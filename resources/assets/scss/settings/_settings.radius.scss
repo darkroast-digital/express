@@ -1,0 +1,25 @@
+/*
+|--------------------------------------------------------------------------
+| #RADIUS
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+$radius: (
+    small: 2px,
+    medium: 5px,
+    large: 7px,
+    round: 1000000px,
+    circle: 50%,
+);
+
+@function radius($key) {
+    @if map-has-key($radius, $key) {
+        @return map-get($radius, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $radius.";
+    @return null;
+}

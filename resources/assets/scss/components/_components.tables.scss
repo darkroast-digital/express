@@ -1,0 +1,25 @@
+/*
+|--------------------------------------------------------------------------
+| #TABLES CORE
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+table {
+    @include rhythm(0);
+}
+
+thead {
+    border-bottom: solid 1px color(grey-light);
+}
+
+tfoot {
+    border-top: solid 1px color(grey-light);
+}
+
+td,
+th {
+    padding: 1rem;
+}

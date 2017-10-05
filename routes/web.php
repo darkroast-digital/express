@@ -1,0 +1,96 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| #WEB
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+use App\Controllers\Auth\AuthController;
+use App\Controllers\BasketController;
+use App\Controllers\BraintreeController;
+use App\Controllers\CategoryController;
+use App\Controllers\CheckoutController;
+use App\Controllers\Dashboard\DashboardController;
+use App\Controllers\HomeController;
+use App\Controllers\ProductsController;
+use App\Middleware\AuthMiddleware;
+
+
+
+
+// #HOME
+// =========================================================================
+
+$app->get('/', HomeController::class . ':index')->setName('home');
+
+
+
+
+// #CATEGORY
+// =========================================================================
+
+$app->get('/category/{slug}', CategoryController::class . ':index')->setName('category');
+
+
+
+
+// #PRODUCT
+// =========================================================================
+
+$app->group('/product', function() {
+    $this->get('/{slug}', ProductsController::class . ':index')->setName('product');
+    $this->post('/{slug}', ProductsController::class . ':store');
+
+    $this->get('/remove/{slug}', ProductsController::class . ':remove')->setName('product.remove');
+});
+
+
+
+
+// #BASKET
+// =========================================================================
+
+$app->get('/basket', BasketController::class . ':index')->setName('basket');
+
+
+
+
+// #CHECKOUT
+// =========================================================================
+
+$app->get('/checkout', CheckoutController::class . ':index')->setName('checkout');
+$app->post('/checkout', CheckoutController::class . ':order');
+
+
+
+
+// #DASHBOARD
+// =========================================================================
+
+$app->group('/dashboard', function () {
+    $this->get('', DashboardController::class . ':index')->setName('dashboard.index');
+})->add(new AuthMiddleware($container));
+
+
+
+
+
+// #BRAINTREE
+// =========================================================================
+
+$app->get('/braintree/token', BraintreeController::class . ':token')->setName('braintree.token');
+
+
+
+// #AUTHENTICATION
+// =========================================================================
+
+$app->get('/register', AuthController::class . ':getRegister')->setName('auth.register');
+$app->post('/register', AuthController::class . ':postRegister');
+$app->get('/login', AuthController::class . ':getLogIn')->setName('auth.login');
+$app->post('/login', AuthController::class . ':postLogIn');
+$app->get('/logout', AuthController::class . ':getLogOut')->setName('auth.logout');

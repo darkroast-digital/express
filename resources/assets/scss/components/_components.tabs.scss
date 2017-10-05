@@ -1,0 +1,162 @@
+/*
+|--------------------------------------------------------------------------
+| #TABS
+|--------------------------------------------------------------------------
+*/
+
+
+
+.tabs {
+
+    &-nav {
+        display: flex;
+        list-style-type: none;
+        width: 100%;
+        padding: 0;
+        position: relative;
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background: color(grey-lighter);
+            transition: all .15s ease(inOutQuad);
+
+            @if ($is-dark) {
+                background: color(grey-dark);
+            }
+        }
+
+        li {
+            min-width: 100px;
+            cursor: pointer;
+            position: relative;
+            padding: $gutter * .25;
+            text-align: center;
+            margin-bottom: 0;
+
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: z(low);
+                width: 100%;
+                transition: all .15s ease(inOutQuad);
+            }
+
+            &.is-active {
+
+                &:after {
+                    height: 2px;
+                    background: color(primary);
+                }
+            }
+        }
+    }
+
+    &-right {
+        display: flex;
+
+        .tabs-nav {
+            display: block;
+            width: 100px;
+            order: 1;
+
+            &:after {
+                height: 100%;
+                width: 1px;
+                right: auto;
+                left: 0;
+            }
+
+            li {
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    left: 0;
+                    bottom: auto;
+                    z-index: z(low);
+                    height: 100%;
+                    width: 2px;
+                    transition: all .15s ease(inOutQuad);
+                }
+
+                &.is-active {
+
+                    &:after {
+                        height: 100%;
+                        background: color(primary);
+                    }
+                }
+            }
+        }
+    }
+
+    &-left {
+        display: flex;
+
+        .tabs-nav {
+            display: block;
+            width: 100px;
+
+            &:after {
+                height: 100%;
+                width: 1px;
+                right: 0;
+                left: auto;
+            }
+
+            li {
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    left: auto;
+                    bottom: auto;
+                    z-index: z(low);
+                    height: 100%;
+                    width: 2px;
+                    transition: all .15s ease(inOutQuad);
+                }
+
+                &.is-active {
+
+                    &:after {
+                        height: 100%;
+                        background: color(primary);
+                    }
+                }
+            }
+        }
+    }
+
+    &-body {
+        position: relative;
+    }
+
+    &-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+        padding: $gutter;
+
+        &.is-active {
+            position: relative;
+            opacity: 1;
+            pointer-events: all;
+            visibility: visible;
+        }
+    }
+}

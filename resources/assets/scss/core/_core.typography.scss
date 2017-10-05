@@ -1,0 +1,161 @@
+/*
+|--------------------------------------------------------------------------
+| #TYPOGRPAHY CORE
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+html {
+    color: color(font);
+
+    * {
+        font-family: $font-body;
+    }
+}
+
+
+// #CONTENT SECTIONING
+// =========================================================================
+
+h1 {
+    font-family: $font-display;
+    font-weight: $display-weight;
+    @include rhythm(6);
+    color: color(display);
+}
+
+h2 {
+    font-family: $font-display;
+    font-weight: $display-weight;
+    @include rhythm(5);
+    color: color(display);
+}
+
+h3 {
+    font-family: $font-display;
+    font-weight: $display-weight;
+    @include rhythm(4);
+    color: color(display);
+}
+
+h4 {
+    font-family: $font-display;
+    font-weight: $display-weight;
+    @include rhythm(3);
+    color: color(display);
+}
+
+h5 {
+    font-family: $font-display;
+    font-weight: $display-weight;
+    @include rhythm(2);
+    color: color(display);
+}
+
+h6 {
+    font-family: $font-display;
+    font-weight: $display-weight;
+    @include rhythm(1);
+    color: color(display);
+}
+
+.subtitle {
+    margin-top: -$global-rhythm;
+}
+
+
+
+// #TEXT CONTENT
+// =========================================================================
+
+p {
+    @include rhythm(0);
+}
+
+li {
+    @include rhythm(0);
+}
+
+ul,
+ol {
+    list-style-position: inside;
+
+    ul,
+    ol {
+        padding-left: ms(0);
+    }
+}
+
+dt {
+    font-weight: $display-weight;
+    @include rhythm(0);
+}
+
+dd {
+    @include rhythm(0);
+}
+
+blockquote {
+    border-left: solid 2px color(primary);
+    margin: $gutter;
+    padding: $gutter;
+}
+
+hr {
+    margin: $gutter 0;
+    height: 1px;
+    background: color(display);
+
+    &.seperator-wide {
+        height: 5px;
+    }
+}
+
+
+
+
+// #INLINE TEXT
+// =========================================================================
+
+a {
+    line-height: $global-line-height;
+    color: color(primary);
+    text-decoration: underline;
+    text-decoration-skip: ink;
+
+    &:hover {
+        color: color(primary);
+    }
+}
+
+cite {
+    font-style: normal;
+    font-size: .75rem;
+
+    &:before {
+        content: '-';
+    }
+}
+
+u {
+    text-decoration: underline;
+    text-decoration-skip: ink;
+}
+
+ins {
+    text-decoration: underline;
+    text-decoration-skip: ink;
+}
+
+abbr {
+    text-decoration: underline;
+    text-decoration-skip: ink;
+}
+
+mark {
+    color: color(primary);
+    background: color(grey-lighter);
+    padding: 0 .25rem;
+}

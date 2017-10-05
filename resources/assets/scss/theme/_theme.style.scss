@@ -1,0 +1,358 @@
+/*
+|--------------------------------------------------------------------------
+| #THEME
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+$sidebar-width: 100px;
+
+
+
+
+
+// #MEDIA OBJECT
+// =========================================================================
+
+.media-object {
+    display: flex;
+    margin-bottom: $gutter;
+
+    img {
+        margin-right: 1rem;
+    }
+
+    footer {
+        display: inline-block;
+        background: color(grey-lightest);
+        border-radius: radius(small);
+    }
+
+    ul {
+        display: inline-flex;
+        align-items: center;
+        list-style-type: none;
+    }
+
+    li {
+        margin-bottom: 0;
+        padding: .5rem;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+// #SETUP
+// =========================================================================
+
+body {
+    overflow: hidden;
+}
+
+table {
+    border: solid 1px color(grey-light);
+    width: 100%;
+}
+
+thead {
+    border-bottom: solid 1px color(grey-light);
+}
+
+th {
+    text-align: left;
+}
+
+tr {
+    border-bottom: none;
+}
+
+
+
+
+// #NAV
+// =========================================================================
+
+.nav {
+    position: relative;
+    float: left;
+    display: block;
+    width: $sidebar-width;
+    height: 100vh;
+    background: color(grey-lighter);
+    text-align: center;
+
+    ul {
+        display: block;
+        height: auto;
+    }
+
+    &-brand {
+        background: color(black);
+        height: $sidebar-width;
+        padding: .5rem;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    a:not(.nav-brand) {
+        color: color(black);
+
+        img {
+            max-height: 50px;
+        }
+    }
+}
+
+
+
+
+// #CONTENT
+// =========================================================================
+
+.content {
+    position: relative;
+    float: right;
+    width: calc(100% - #{$sidebar-width});
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+
+
+
+// #TOPBAR
+// =========================================================================
+
+
+.topbar {
+    position: fixed;
+    z-index: z(higher);
+    display: flex;
+    align-items: center;
+    height: $sidebar-width;
+    width: 100%;
+    background: color(grey-lighter);
+
+    &-brand {
+        display: block;
+        width: 400px;
+        padding: 0 1rem;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        @include flex-position(left);
+        margin-bottom: 0;
+        margin-right: 10rem;
+        list-style-type: none;
+    }
+
+    li {
+        margin-bottom: 0;
+
+        &:first-of-type {
+
+            &:after {
+                content: '|';
+            }
+        }
+
+        img {
+            width: 25px;
+        }
+    }
+
+    a {
+        position: relative;
+        z-index: z(low);
+        text-decoration: none;
+        padding: 0 1rem;
+        text-transform: uppercase;
+        letter-spacing: .05rem;
+        color: color(black);
+    }
+}
+
+.cart-count {
+    position: absolute;
+    z-index: -10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -1rem;
+    left: -.25rem;
+    height: 30px;
+    width: 30px;
+    border: solid 2px color(black);
+    border-radius: radius(circle);
+    font-size: .75rem;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        right: -5px;
+        height: 18px;
+        width: 18px;
+        background: color(grey-lighter);
+        border-radius: radius(circle);
+    }
+}
+
+
+
+
+// #PAGE
+// =========================================================================
+
+.page {
+    min-height: calc(100vh - #{$sidebar-width});
+    width: 100%;
+    margin-top: $sidebar-width;
+    padding: $gutter;
+    display: flex;
+
+    &-images {
+        border-right: solid 1px color(grey-lighter);
+        padding-right: $gutter * .5;
+
+        img {
+            max-width: 100%;
+            margin-bottom: $gutter * .5;
+        }
+    }
+}
+
+.print-confirm {
+    display: flex;
+
+    label {
+        display: inline-block;
+        font-weight: bold;
+        color: color(black);
+    }
+
+    input {
+        width: auto;
+        display: inline-block;
+    }
+}
+
+.print-details {
+    background: color(grey-lightest);
+    border: 1px solid color(grey-lighter);
+    padding: 1rem;
+    margin-bottom: $gutter;
+    border-radius: radius(small);
+
+    .field {
+        margin-bottom: 0;
+    }
+
+    label {
+        display: inline-block;
+        font-weight: bold;
+        color: color(black);
+    }
+
+    input,
+    select {
+        display: inline-block;
+        width: auto;
+    }
+
+    select {
+        min-width: 100px;
+    }
+}
+
+
+
+
+// #PRODUCT CARD
+// =========================================================================
+
+.product-card {
+    text-decoration: none;
+    color: color(font);
+    margin-bottom: $gutter;
+
+    h6 {
+        font-weight: normal;
+    }
+
+    .card-image {
+        height: 250px;
+    }
+
+    .card-body {
+        background: color(grey-lighter);
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 55px;
+            padding: 0 $gutter;
+            background: color(black);
+            color: color(white);
+        }
+    }
+
+    .card-title {
+        padding: $gutter * .15 $gutter * .5;
+    }
+
+    h6 {
+        font-size: ms(0);
+        line-height: 1;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+
+
+
+// #FOOTER
+// =========================================================================
+
+.footer {
+    display: flex;
+    
+    ul {
+        list-style-type: none;
+        display: flex;
+        @include flex-position(left);
+    }
+
+    a {
+        color: color(font);
+        padding: .25rem;
+    }
+
+    strong {
+
+        a {
+            color: color(black);
+            text-decoration: none;
+            padding-left: 0;
+        }
+    }
+}

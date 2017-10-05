@@ -1,0 +1,31 @@
+{% extends 'layouts/app.twig' %}
+{% block pageclass %}{% endblock %}
+{% block title %}login{% endblock %}
+
+{% block content %}
+
+<h4>Log In</h4>
+
+<form action="{{ path_for('auth.login') }}" method="post">
+
+    {{ csrf.field | raw }}
+
+    <div class="field {{ errors.email ? 'field--error' : '' }}">
+        <label for="email">Email</label>
+        <input type="text" name="email" value="{{ old.email }}">
+        {% if errors.email %}
+            <span><small>{{ errors.email | first }}</small></span>
+        {% endif %}
+    </div>
+
+    <div class="field {{ errors.password ? 'field--error' : '' }}">
+        <label for="password">Password</label>
+        <input type="password" name="password" value="{{ old.password }}">
+        <span><small>{{ errors.password | first }}</small></span>
+    </div>
+
+    <button type="submit">Log In</button>
+
+</form>
+
+{% endblock %}

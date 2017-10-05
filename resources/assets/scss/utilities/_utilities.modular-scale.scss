@@ -1,0 +1,14 @@
+/*
+|--------------------------------------------------------------------------
+| #MODULAR SCALE
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+@function ms($value, $ratio: $ms-ratio, $base: $global-font-size) {
+    $size: pow($ratio, $value) * calculateRem($base);
+
+    @return $size;
+}

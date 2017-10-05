@@ -1,0 +1,67 @@
+/*
+|--------------------------------------------------------------------------
+| #LABELS
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+.label {
+    display: inline-block;
+    padding: $gutter * .15 $gutter * .5;
+    font-size: .75rem;
+    background: color(black);
+    color: color(white);
+
+    @if ($is-dark) {
+        background: color(white);
+        color: color(black);
+    }
+
+    @if ($has-radius) {
+        overflow: hidden;
+        border-radius: radius(round);
+    }
+
+    &.is-primary {
+        background: color(primary);
+
+        @if ($is-dark) {
+            color: color(white);
+        }
+    }
+
+    &.is-secondary {
+        background: color(secondary);
+
+        @if ($is-dark) {
+            color: color(white);
+        }
+    }
+
+    &.is-success {
+        background: color(success);
+
+        @if ($is-dark) {
+            color: color(white);
+        }
+    }
+
+    &.is-warning {
+        background: color(warning);
+
+        @if ($is-dark) {
+            color: color(white);
+        }
+    }
+
+    &.is-error {
+        background: color(error);
+
+        @if ($is-dark) {
+            color: color(white);
+        }
+    }
+}
+

@@ -1,0 +1,33 @@
+/*
+|--------------------------------------------------------------------------
+| #BUTTONS CORE
+|--------------------------------------------------------------------------
+*/
+
+
+
+.button-group {
+    display: flex;
+
+    button,
+    .button,
+    input[type="submit"],
+    input[type="button"],
+    input[type="reset"] {
+        border-radius: 0;
+
+        @if ($has-radius) {
+    
+            &:first-of-type {
+                border-top-left-radius: radius(small);
+                border-bottom-left-radius: radius(small);
+            }
+
+            &:last-of-type {
+                border-top-right-radius: radius(small);
+                border-bottom-right-radius: radius(small);
+            }
+
+        }
+    }
+}

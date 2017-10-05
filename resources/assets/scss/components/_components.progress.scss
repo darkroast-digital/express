@@ -1,0 +1,32 @@
+/*
+|--------------------------------------------------------------------------
+| #PROGRESS
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+progress {
+    width: 100%;
+}
+
+progress[value] {
+    appearance: none;
+
+    &::-webkit-progress-bar {
+        background: color(grey-lighter);
+        border-radius: 1000000px;
+    }
+
+    &::-webkit-progress-value {
+        background: repeating-linear-gradient(
+          45deg,
+          color(primary),
+          color(primary) 10px,
+          lighten(color(primary), 10%) 10px,
+          lighten(color(primary), 10%) 20px
+        );
+        border-radius: 1000000px;
+    }
+}

@@ -1,0 +1,28 @@
+/*
+|--------------------------------------------------------------------------
+| #FLUID SIZING
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+@mixin fluid($properties, $min-value, $max-value, $min-vw: $small, $max-vw: $large) {
+  & {
+    @each $property in $properties {
+      #{$property}: $min-value;
+    }
+
+    @media screen and (min-width: $min-vw) {
+      @each $property in $properties {
+        #{$property}: calc(#{$min-value} + #{stripUnits($max-value - $min-value)} * (100vw - #{$min-vw}) / #{stripUnits($max-vw - $min-vw)});
+      }
+    }
+
+    @media screen and (min-width: $max-vw) {
+      @each $property in $properties {
+        #{$property}: $max-value;
+      }
+    }
+  }
+}

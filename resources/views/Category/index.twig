@@ -1,0 +1,24 @@
+{% extends 'layouts/app.twig' %}
+{% block pageclass %}{% endblock %}
+{% block title %}index{% endblock %}
+
+{% block content %}
+
+{% for product in products %}
+    <a href="{{ path_for('product', { slug: product.slug } ) }}" class="product-card column-4">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ product.image }}" draggable="false">
+            </div>
+            <section class="card-body">
+                <div class="card-title">
+                    <h6>{{ product.name }}</h6>
+                    <p><small>In {{ product.time }} {{ product.length }}</small></p>
+                </div>
+                <p>${{ product.price }}</p>
+            </section>
+        </div>
+    </a>
+{% endfor %}
+
+{% endblock %}

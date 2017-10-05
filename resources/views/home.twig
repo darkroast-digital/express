@@ -1,0 +1,9 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <form action="/post" method="post">
+        {{ csrf.field | raw }}
+        <input type="text" value="test">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

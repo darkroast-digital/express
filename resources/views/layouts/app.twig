@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Viewport Meta -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Styles -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+
+    <!-- Mobile Theme Colour -->
+
+    <meta name="theme-color" content="#384578">
+
+    <!-- Title and Description -->
+
+    <title>Darkroast Digital Express | {% block title %}{% endblock %}</title>
+
+    <!-- Favicons -->
+
+    <link rel="icon" href="/assets/img/fav.png">
+
+    <!--[if lt IE 9]>
+     <script src="js/polyfill/html5-shiv.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+    <div class="{% block pageclass %}{% endblock %}" id="app">
+
+        {% include 'partials/flash.twig' %}
+        
+        <nav class="nav">
+            <a href="#0" class="nav-brand"><img src="/assets/img/logo-symbol.svg" draggable="false"></a>
+            <ul class="nav-navbar">
+                <li><a href="{{ path_for('category', {slug: 'all'} ) }}">All</a></li>
+                <li>
+                    <a href="{{ path_for('category', {slug: 'design'} ) }}">
+                        <img src="/assets/img/design.svg" draggable="false">
+                        Design
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path_for('category', {slug: 'design'} ) }}">
+                        <img src="/assets/img/print.svg" draggable="false">
+                        Print
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path_for('category', {slug: 'web'} ) }}">
+                        <img src="/assets/img/web.svg" draggable="false">
+                        Web
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path_for('category', {slug: 'design'} ) }}">
+                        <img src="/assets/img/video.svg" draggable="false">
+                        Video
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path_for('category', {slug: 'design'} ) }}">
+                        <img src="/assets/img/more.svg" draggable="false">
+                        More
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="topbar">
+                <a href="{{ path_for('category', {slug: 'all'} ) }}" class="topbar-brand"><img src="/assets/img/logo.svg" alt="Darkroast Digital | Express" draggable="false"></a>
+                <ul>
+                    <li><a href="#0">How it works</a></li>
+                    <li><a href="#0">Faqs</a></li>
+                    <li><a href="{{ path_for('basket') }}">{% if basket.count == 0 %}{% else %}<span class="cart-count">{{ basket.count }}</span>{% endif %}<img src="/assets/img/checkout.svg" draggable="false"></a></li>
+                </ul>
+            </div>
+            
+            <div class="page container container-full">
+                {% block content %}{% endblock %}
+            </div>
+
+            <footer class="footer">
+                <ul class="footer-nav">
+                    <li>visit <strong><a href="http://darkroast.co">darkroast.co</a></strong></li>
+                    <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                    <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fa fa-vimeo"></i></a></li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+
+    <script src="/assets/js/app.js"></script>
+    {% block scripts %}{% endblock %}
+
+    <!-- See you space cowboy... -->
+</body>
+</html>

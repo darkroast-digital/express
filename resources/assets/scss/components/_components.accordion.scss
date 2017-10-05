@@ -1,0 +1,38 @@
+/*
+|--------------------------------------------------------------------------
+| #ACCORDION
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+.accordion {
+    list-style-type: none;
+    padding: 0;
+
+    &-panel {
+
+        &.is-open {
+
+            .accordion-title {
+                background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFGBYc////vzOVLgAAAAJ0Uk5T/wDltzBKAAAALUlEQVR42uzSsQkAAAgEsXf/pR1CEMFcn+5SgwLDMAzDC/hjJoFhGIaP4xZgAOZ/DSHKaW/8AAAAAElFTkSuQmCC');
+                background-repeat: no-repeat;
+                background-size: 15px;
+                background-position: right center;
+            }
+        }
+    }
+
+    &-title {
+        cursor: pointer;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFGBYc////vzOVLgAAAAJ0Uk5T/wDltzBKAAAAMUlEQVR42uzSsQkAAAgDQd1/aZ3AUgTv23BdIoeiG3cYhmEYXsAfcxIYhmH4OC4BBgCk5QxBt2XcSQAAAABJRU5ErkJggg==');
+        background-repeat: no-repeat;
+        background-size: 15px;
+        background-position: right center;
+    }
+
+    &-content {
+        padding: $gutter * .5;
+    }
+}

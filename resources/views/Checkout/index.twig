@@ -1,0 +1,85 @@
+{% extends 'layouts/app.twig' %}
+{% block pageclass %}{% endblock %}
+{% block title %}index{% endblock %}
+
+{% block content %}
+
+<form action="{{ path_for('checkout') }}" method="post" class="container container-full" style="width: 100%;">
+    <div class="column-8">
+        <h4>Your Details</h4>
+        <hr>
+        <div class="form-row">
+            <div class="field">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name">
+            </div>
+            <div class="field">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label for="company-name">Company Name</label>
+                <input type="text" name="company">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" name="email">
+            </div>
+            <div class="field">
+                <label for="phone">Phone</label>
+                <input type="phone" name="phone">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label for="instructions">Additional Instructions</label>
+                <textarea name="instructions"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="column-4">
+        <h4>Payment</h4>
+        <hr>
+        <div id="payment"></div>
+        <h4>Order Summary</h4>
+        <hr>
+        <table>
+            <tr>
+                <td>Subtotal: </td>
+                <td>${{ basket.subTotal | number_format(2) }}</td>
+            </tr>
+            <tr>
+                <td><strong>Total: </strong></td>
+                <td>${{ basket.subTotal | number_format(2) }}</td>
+            </tr>
+        </table>
+        <button type="submit">Place Order</button>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+
+    <script>
+        $.ajax({
+            url: "{{ path_for('braintree.token') }}",
+            type: 'get',
+            dataType: 'json',
+            success: (function (data) {
+                braintree.setup(data.token, 'dropin', {
+                  container: 'payment'
+                });
+            })
+        });
+    </script>
+
+
+
+{% endblock %}

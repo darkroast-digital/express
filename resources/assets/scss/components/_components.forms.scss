@@ -1,0 +1,173 @@
+/*
+|--------------------------------------------------------------------------
+| #FORMS CORE
+|--------------------------------------------------------------------------
+*/
+
+
+
+label {
+    display: block;
+    line-height: $global-line-height;
+}
+
+input,
+textarea,
+select {
+    display: inline-block;
+    outline: none;
+    padding: $gutter * .15 $gutter * .25;
+    border: solid 1px color(grey-light);
+    color: color(font);
+    line-height: $global-line-height;
+    width: 100%;
+
+    @if ($has-radius) {
+        border-radius: radius(small);
+    }
+}
+
+textarea {
+  min-height: 150px;
+}
+
+input[type="submit"] {
+    @include button();
+
+    &[disabled] {
+        background: color(grey-lighter);
+        color: color(grey-light);
+        border-color: color(grey-light);
+        cursor: not-allowed;
+    }
+}
+
+input[type="button"] {
+    @include button();
+
+    &[disabled] {
+        background: color(grey-lighter);
+        color: color(grey-light);
+        border-color: color(grey-light);
+        cursor: not-allowed;
+    }
+}
+
+input[type="reset"] {
+    @include button();
+
+    &[disabled] {
+        background: color(grey-lighter);
+        color: color(grey-light);
+        border-color: color(grey-light);
+        cursor: not-allowed;
+    }
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    border: none;
+    height: 2px;
+    width: 100%;
+    background: color(grey-lighter);
+    padding: 0;
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: color(primary);
+      cursor: pointer;
+      transition: all .2s ease(inOutSine);
+
+      &:hover {
+        background: color(primary);
+      }
+    }
+
+    &:active::-webkit-slider-thumb {
+      background: lighten(color(primary), 5%);
+      transform: scale(1.1);
+    }
+
+    &::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border: 0;
+      border-radius: 50%;
+      background: color(primary);
+      cursor: pointer;
+
+      &:hover {
+        background: color(primary);
+      }
+    }
+
+    &:active::-moz-range-thumb {
+      background: lighten(color(primary), 5%);
+      transform: scale(1.1);
+    }
+}
+
+select:not([multiple]) {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADqSURBVFiF7da9DcIwEIbh90M0ZKVMlAEyB122gRlSMQINKyAdjZHMX2JfHIJELF2TWPc+pWVmLHk2i9ZXwAqIAZJ234rGrY2kWlIPXCR1kqoZw5WkLrR6STXAEbBoDkBlZpQcoAq749YR4PT0sTjiQ9xCm+bNj2KIgbgBzf3Sfg7ESHxvZsSXiyJS4g+AkojU+AugBCIn/hYwBZEb/wjwIDzxQUAOwhsfBaQgpsSTAAkIdzwZMIJwx7MAGYjkeDYgAZEVdwEGENlxNyAgWuAcpvXuUVjmOpK2AGZ2de+YAihxfudVvAL+FnADuTyEJ3ViKq4AAAAASUVORK5CYII=);
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-origin: content-box;
+}
+
+
+.radio {
+  display: inline-block;
+
+  &-button {
+    position: relative;
+    display: block;
+    height: 20px;
+    width: 20px;
+    border: solid 3px color(grey-lighter);
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all .2s ease(inOutSine);
+
+    &:hover {
+        border-color: color(grey-light);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 7px;
+      width: 7px;
+      background: color(primary);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: all .2s ease(inOutSine);
+    }
+  }
+
+  input[type="radio"] {
+    display: none;
+
+    &:checked {
+
+      &+.radio-button {
+        border-color: color(primary);
+
+        &:after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    }
+  }
+}
+
+.field {
+  display: block;
+  margin-bottom: $global-trail;
+}

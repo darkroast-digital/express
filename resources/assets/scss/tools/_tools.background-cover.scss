@@ -1,0 +1,13 @@
+/*
+|--------------------------------------------------------------------------
+| #BACKGROUND POSITION
+|--------------------------------------------------------------------------
+*/
+
+
+
+@mixin cover($x: center, $y: center) {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: $x $y;
+}

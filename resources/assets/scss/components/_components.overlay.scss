@@ -1,0 +1,27 @@
+/*
+|--------------------------------------------------------------------------
+| #OVERLAY
+|--------------------------------------------------------------------------
+*/
+
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: z(high);
+    height: 100%;
+    width: 100vw;
+    background: color(black);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all .2s ease(inOutSine);
+
+    &.is-active {
+        opacity: .8;
+        visibility: visible;
+        pointer-events: all;
+    }
+}

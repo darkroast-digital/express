@@ -1,0 +1,81 @@
+/*
+|--------------------------------------------------------------------------
+| #BADGE
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+.badge {
+    display: inline-block;
+    padding: $gutter * .25 $gutter;
+    background: color(white);
+
+    @if ($is-background-white) {
+        background: color(grey-lightest);
+    }
+
+    border-left: solid 3px color(black);
+    color: color(black);
+
+    @if ($is-dark) {
+        background: color(grey-darkest);
+        color: color(white);
+        border-left-color: color(white);
+    }
+
+    @if ($has-radius) {
+        overflow: hidden;
+        border-radius: radius(small);
+    }
+
+    @if ($has-shadow) {
+        @include shadow(raised);
+    }
+
+    &.is-primary {
+        color: color(primary);
+        border-left-color: color(primary);
+
+        &:before {
+            background-color: color(primary);
+        }
+    }
+
+    &.is-secondary {
+        color: color(secondary);
+        border-left-color: color(secondary);
+
+        &:before {
+            background-color: color(secondary);
+        }
+    }
+
+    &.is-success {
+        color: color(success);
+        border-left-color: color(success);
+
+        &:before {
+            background-color: color(success);
+        }
+    }
+
+    &.is-warning {
+        color: color(warning);
+        border-left-color: color(warning);
+
+        &:before {
+            background-color: color(warning);
+        }
+    }
+
+    &.is-error {
+        color: color(error);
+        border-left-color: color(error);
+
+        &:before {
+            background-color: color(error);
+        }
+    }
+}

@@ -1,0 +1,43 @@
+<ul class="product-details">
+    <li><img src="/assets/img/product-details/sides.svg" draggable="false"> {{ product.details.one }}</li>
+    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.two }}</li>
+    <li><img src="/assets/img/revisions.svg" draggable="false"> {{ product.details.three }}</li>
+    <li><img src="/assets/img/designer.svg" draggable="false"> {{ product.details.four }}</li>
+    <li><img src="/assets/img/satisfaction.svg" draggable="false"> {{ product.details.five }}</li>
+</ul>
+
+<!-- End Details -->
+
+<div class="field design-size">
+    <label>What size do you need? <small>(feet)</small></label>
+    <select name="size">
+        <option value="4x6" selected>4" x 6" (Postcard)</option>
+        <option value="4x9">4" x 9" (Postcard)</option>
+        <option value="6x8">6" x 8" (Postcard)</option>
+        <option value="4x9">4" x 9" (Paper)</option>
+        <option value="Other">Other (Specify in instructions)</option>
+        <option value="Does not know">I don't know</option>
+    </select>
+</div>
+
+<div class="field radio design-orientation is-inline">
+    <label>Orientation</label>
+    <div>
+        <div>
+            <img src="/assets/img/products/design/orientation/portrait.svg" draggable="false">
+            <label class="radio"><input type="radio" name="orientation" value="portrait"><span class="radio-button"></span></label>
+            Portrait
+        </div>
+        <div>
+            <img src="/assets/img/products/design/orientation/landscape.svg" draggable="false">
+            <label class="radio"><input type="radio" name="orientation" value="landscape"><span class="radio-button"></span></label>
+            Landscape
+        </div>
+    </div>
+</div>
+
+<div class="field addon">
+        <label for="sides">Do you only need 1 side?</label>
+        <input type="checkbox" name="sides" value="1 Side">
+        Yes <strong>(-$60)</strong>
+</div>

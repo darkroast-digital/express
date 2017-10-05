@@ -1,0 +1,52 @@
+/*
+|--------------------------------------------------------------------------
+| #PRODUCT
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+.product {
+
+    h3 {
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    
+    &-details {
+        display: inline-flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+        background: color(grey-lightest);
+        margin-bottom: $gutter;
+        padding: $gutter * .25;
+
+        @if ($has-radius) {
+            border-radius: radius(small);
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+            padding: $gutter * .25 $gutter * .5;
+
+            &:after {
+                content: '|';
+                margin-left: $gutter * .5;
+            }
+
+            &:last-of-type {
+
+                &:after {
+                    content: '';
+                }
+            }
+        }
+
+        img {
+            margin-right: $gutter * .25;
+        }
+    }
+}

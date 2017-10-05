@@ -1,0 +1,34 @@
+{% extends 'layouts/app.twig' %}
+{% block pageclass %}product{% endblock %}
+{% block title %}Product{% endblock %}
+
+{% block content %}
+
+<div class="page-images column-1">
+    <p>Examples</p>
+    
+    {% for image in product.images %}
+        <img src="{{ image.path }}" draggable="false">
+    {% endfor %}
+</div>
+
+<div class="page-details column-11">
+    
+    <h3>{{ product.name }} ${{ product.price }}</h3>
+    <p>In {{ product.time }} {{ product.length }}</p>
+
+    <!-- End Title -->
+
+    <form action="{{ path_for('product', {slug: product.slug}) }}" method="post" enctype="multipart/form-data">
+        
+        {% embed 'Product/partials/' ~ product.category ~ '/main.twig' %}
+            {% block description %}{% endblock %}
+            {% block details %}{% endblock %}
+        {% endembed %}
+        
+        <button type="submit">Send</button>
+    </form>
+
+</div>
+
+{% endblock %}

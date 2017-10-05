@@ -1,0 +1,26 @@
+/*
+|--------------------------------------------------------------------------
+| #Z-INDEX
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+$z-indeces: (
+    lower: 0,
+    low: 20,
+    middle: 40,
+    high: 60,
+    higher: 80,
+    highest: 100
+);
+
+@function z($key) {
+    @if map-has-key($z-indeces, $key) {
+        @return map-get($z-indeces, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $z-indeces.";
+    @return null;
+}

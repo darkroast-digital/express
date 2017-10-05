@@ -1,0 +1,21 @@
+{% extends 'layouts/app.twig' %}
+{% block pageclass %}{% endblock %}
+{% block title %}index.twig{% endblock %}
+
+{% block content %}
+
+{# {{ user.orders }} #}
+
+<table>
+    
+</table>
+
+<div>
+{% for order in user.orders %}
+    <div>
+        <h4>Order #{{ order.id }}</h4>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}
