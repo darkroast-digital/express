@@ -192,3 +192,40 @@ if (printDetails) {
     });
 
 }
+
+
+
+
+// #FORM
+// =========================================================================
+
+var form = $('.js-form');
+
+$(form).submit(function(e) {
+    e.preventDefault();
+
+    var formData = new FormData($(this)[0]);
+    // if files => formData.append('file', $('input[type=file]')[0].files[0]); 
+
+    $.ajax({
+        type: 'post',
+        url: $(this).attr('action'),
+        data: formData,
+        processData: false,
+        contentType : false
+    })
+    .done(function (response) {
+        $('input').val('');
+        $('textarea').val('');
+        $('<div class="alert is-success">Your Message Was Sent!  We\'ll be in touch.</div>').insertAfter(form);
+
+        console.log('success' + response);
+    })
+    .fail(function (data) {
+        $('input').val('');
+        $('textarea').val('');
+        $('<div class="alert is-error">Oh no!  Something went wrong, try again.</div>').insertAfter(form);
+
+        console.log('fail' + data);
+    });
+});

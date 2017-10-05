@@ -366,3 +366,29 @@ tr {
         }
     }
 }
+
+
+
+
+// #CONTACT
+// =========================================================================
+
+.contact {
+
+    &-details {
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+        }
+
+        svg {
+            height: 1rem;
+            margin-right: .5rem;
+        }
+    }
+}
