@@ -335,6 +335,16 @@ tr {
 
 .footer {
     display: flex;
+    align-items: flex-end;
+    padding: $gutter $gutter * 2;
+
+    p {
+        margin-bottom: 0;
+
+        a {
+            font-weight: bold;
+        }
+    }
     
     ul {
         list-style-type: none;
@@ -343,7 +353,7 @@ tr {
     }
 
     a {
-        color: color(font);
+        color: color(black);
         padding: .25rem;
     }
 
