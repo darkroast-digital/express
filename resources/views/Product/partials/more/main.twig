@@ -1,13 +1,13 @@
 {% include 'Product/partials/' ~ product.category ~ '/products/' ~ product.slug ~ '.twig' %}
 
 <div class="field">
-    <label for="company-name">Company Name</label>
-    <input type="text" name="company-name">            
+    <label for="">Company Name</label>
+    <input type="text" name="">            
 </div>
 
 <div class="field">
-    <label for="use-where">Links to Social Media Page where it will be used (or Website) <small>optional - if more than one separate by commas</small></label>
-    <input type="text" name="use-where">        
+    <label for="">Links to Social Media Page where it will be used (or Website)<small>optional - if more than one separate by commas</small></label>
+    <input type="text" name="">        
 </div>
 
 <div class="field">
@@ -45,20 +45,26 @@
     <input type="text" name="">       
 </div>
 
+<h4><strong>Step 4</strong> - Content</h4>
+<hr>
+<p>Unless you selected our Copy Writing Feature, you are responsible for providing all of the website copy / content. <br>
+You can send us this later if you don’t have it yet.</p>
+
+<div class="field">
+    <label for="keywords">Search Keywords <small>optional - if more than one separate by commas</small></label>
+    <input type="text" name="keywords" placeholder="What keywords describe your business or website?">
+</div>
+
+<div class="field">
+    <label for="description">Website Content <small>i.e. title, specials, services, photos etc.</small></label>
+    <textarea name="description"></textarea>
+</div>
+
 <div class="field">
     <label for="files">
         Content Files
         <span class="image-zone"></span>
         <input type="file" name="files[]" id="files">
-    </label>
-</div>
-
-<div class="field">
-    <label for="images">
-        Images + Videos
-        <span style="display:inline-block; background:#F7F9FB; padding: .25rem; margin-bottom: 1rem">If you do not have video clips for us to work with, it won't be a prolem. We will imporvise with stock video, custom animations and effects.</span>
-        <span class="image-zone"></span>
-        <input type="file" name="images[]" id="images">
     </label>
 </div>
 
