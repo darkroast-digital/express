@@ -1,0 +1,37 @@
+{% extends 'layouts/app.twig' %}
+{% block pageclass %}{% endblock %}
+{% block title %}Order Summary{% endblock %}
+
+{% block content %}
+
+    <div class="summary">
+
+        <h4>Order Summary</h4>
+
+        <h6>Order Number #{{ order.id }}</h6>
+        <p>Thank you for your order.  We'll be in touch soon to follow up.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Delivered In</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in order.products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>${{ product.price | number_format(2) }}</td>
+                        <td>1</td>
+                        <td>{{ product.time }} {{ product.length }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h6>Total: ${{ total | number_format(2) }}</h6>
+    </div>
+
+{% endblock %}

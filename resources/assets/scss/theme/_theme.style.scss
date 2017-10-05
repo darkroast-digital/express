@@ -216,7 +216,7 @@ tr {
 // =========================================================================
 
 .page {
-    min-height: calc(100vh - #{$sidebar-width});
+    min-height: calc(90vh - #{$sidebar-width});
     width: 100%;
     margin-top: $sidebar-width;
     padding: $gutter;
