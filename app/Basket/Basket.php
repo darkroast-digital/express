@@ -24,15 +24,14 @@ class Basket
     {
         $variants = [];
         $options = $product->options;
+        $extras = $params['option'];
 
-        foreach ($params as $option => $state) {
-            
-            foreach ($options as $key) {
+        foreach ($extras as $extra) {
 
-                if ($option == $key->slug) {
-                    $var = Option::where('slug', $key->slug)->first();
+            foreach ($options  as $option) {
 
-                    array_push($variants, $var);
+                if ($option->slug == $extra) {
+                    array_push($variants, $option);
                 }
             }
         }
