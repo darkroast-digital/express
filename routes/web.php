@@ -14,6 +14,7 @@ use App\Controllers\BasketController;
 use App\Controllers\BraintreeController;
 use App\Controllers\CategoryController;
 use App\Controllers\CheckoutController;
+use App\Controllers\ContactController;
 use App\Controllers\Dashboard\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\ProductsController;
@@ -26,6 +27,15 @@ use App\Middleware\AuthMiddleware;
 // =========================================================================
 
 $app->get('/', HomeController::class . ':index')->setName('home');
+
+
+
+
+// #HOME
+// =========================================================================
+
+$app->get('/contact', ContactController::class . ':index')->setName('contact');
+$app->post('/contact', ContactController::class . ':post');
 
 
 

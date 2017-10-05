@@ -1,0 +1,71 @@
+{% extends 'layouts/app.twig' %}
+{% block pageclass %}{% endblock %}
+{% block title %}contact{% endblock %}
+
+{% block content %}
+
+<div class="column-8">
+<h6>Contact Us</h6>
+    <p>Do you have questions about your order?  Or, maybe you'd like to know more about the services we offer?  Use the form below to get in touch, we'd be happy to answer any questions you have.</p>
+    <p>If you're looking for a more immediate answer, we also offer live support Monday - Friday from the hours of 9am - 5pm.</p>
+
+    <form action="{{ path_for('contact') }}" method="post" class="js-form">
+        <div class="form-row">
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" name="name">
+            </div>
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" name="email">
+            </div>
+            <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone">
+            </div>
+        </div>
+        <div class="field">
+            <label for="message">Message</label>
+            <textarea name="message"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div class="column-4 contact-details">
+    <h6>Contact Details</h6>
+    <ul>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g class="nc-icon-wrapper" fill="#444444">
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+    </g>
+</svg>hi@darkroast.co</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g class="nc-icon-wrapper" fill="#444444">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+    </g>
+</svg>519.915.5884</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g class="nc-icon-wrapper" fill="#444444">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+    </g>
+</svg>490 Pelissier St, Windsor, ON N9A 4K9</li>
+    </ul>
+    <hr>
+    <p><strong>Hours</strong></p>
+    <ul>
+        <li>Monday: 9am - 5pm</li>
+        <li>Tuesday: 9am - 5pm</li>
+        <li>Wednesday: 9am - 5pm</li>
+        <li>Thursday: 9am - 5pm</li>
+        <li>Friday: 9am - 5pm</li>
+        <li>Saturday: Closed</li>
+        <li>Sunday: Closed</li>
+    </ul>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}
