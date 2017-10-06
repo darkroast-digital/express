@@ -188,6 +188,10 @@ if (printDetails) {
         printDetails.style.display = 'block';
     } else {
         printDetails.style.display = 'none';
+        $('input').val("");
+        $('select').val("");
+        $('[data-price]').val("0");
+        $('span.price').text($('span.price').data('price'));
     }
     });
 
@@ -228,4 +232,35 @@ $(form).submit(function(e) {
 
         console.log('fail' + data);
     });
+});
+
+// Option Pricing
+
+var basePrice = $('span.price').data('price');
+basePrice = parseInt(basePrice);
+var optionPrice = $('.print-detail select option:selected').data('price');
+//optionPrice = parseInt(optionPrice);
+var newPrice = basePrice + optionPrice;
+$('span.price').text(newPrice);
+
+$('.print-detail select').change(function() {
+    optionPrice = $('.print-detail select option:selected').data('price');
+    optionPrice = parseInt(optionPrice);
+    newPrice = basePrice + optionPrice;
+    $('span.price').text(newPrice);
+});
+
+
+
+// Show Size Options
+
+$("[data-select]").hide();
+$('.quantity-label').hide();
+
+$('[data-print]').click(function() {
+    var thisPrint = $(this).attr('data-print');
+
+    $('[data-select]').hide();
+    $('[data-select="' + thisPrint + '"]').show();
+    $('.quantity-label').show();
 });

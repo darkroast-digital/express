@@ -1,0 +1,17 @@
+<div class="field print-detail">
+    <label>Print Details</label>
+</div>
+<div class="field print-detail">
+    <label>Quantity (sized 3.5"x2")</label>
+    <option value="default" data-price="0" disabled selected>Select</option>
+    <select name="option[0]quantity">
+        <option value="business-card-250" data-price="29">250</option>
+        <option value="business-card-500" data-price="28">500</option>
+        <option value="business-card-1000" data-price="45">1000</option>
+        <option value="business-card-2500" data-price="75">2500</option>
+    </select>
+    <div class="cost-of-option">
+        <hr>
+        <p><strong>Total: </strong> $<span class="price">{{ product.price }}</span></p>
+    </div>
+</div>

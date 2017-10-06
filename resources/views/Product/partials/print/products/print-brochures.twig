@@ -1,0 +1,29 @@
+<ul class="product-details">
+    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.two }}</li>
+</ul>
+
+<!-- End Details -->
+
+<div class="field print-detail">
+
+    <label>Quantity</label>
+    <select name="option[0]quantity">
+        <option value="default" data-price="0" disabled selected>Select Quantity</option>
+        <optgroup label='Tri-Fold (8.5"x11")'>
+            <option value="print-poster-tri-100" data-price="105">100</option>
+            <option value="print-poster-tri-250" data-price="189">250</option>
+            <option value="print-poster-tri-500" data-price="279">500</option>
+        </optgroup>
+
+        <optgroup label='Quad-Fold (8.5"x14")'>
+            <option value="print-poster-quad-100" data-price="159">100</option>
+            <option value="print-poster-quad-250" data-price="314">250</option>
+            <option value="print-poster-quad-500" data-price="465">500</option>
+        </optgroup>
+
+    </select>
+
+    <div class="cost-of-option">
+        <p><strong>Total: </strong> $<span class="price">0</span></p>
+    </div>
+</div>

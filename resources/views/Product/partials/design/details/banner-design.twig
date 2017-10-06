@@ -4,10 +4,16 @@
 <div class="field print-detail">
     <label>Size</label>
     <select name="option[0]size">
-        <option value="banner-2x4">2'x4'</option>
-        <option value="banner-3x5">3'x5'</option>
-        <option value="banner-4x6">4'x6'</option>
-        <option value="banner-3x8">3'x8'</option>
-        <option value="banner-4x10">4'x10'</option>
+        <option value="default" data-price="0" disabled selected>Select</option>
+        <option value="banner-2x4" data-price="50">2'x4'</option>
+        <option value="banner-3x5" data-price="80">3'x5'</option>
+        <option value="banner-4x6" data-price="118">4'x6'</option>
+        <option value="banner-3x8" data-price="118">3'x8'</option>
+        <option value="banner-4x10" data-price="160">4'x10'</option>
     </select>
+
+    <div class="cost-of-option">
+        <hr>
+        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.price }}"></span></p>
+    </div>
 </div>
