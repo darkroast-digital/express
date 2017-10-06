@@ -22,6 +22,8 @@ class Basket
 
     public function add(Product $product, $params)
     {
+        // HEYYYYYYYY!!
+
         $variants = [];
         $options = $product->options;
         $extras = $params['option'];
