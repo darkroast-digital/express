@@ -18,12 +18,28 @@ class CheckoutController extends Controller
 
     public function order($request, $response, $args)
     {
-        foreach ($_SESSION['choices'] as $choice) {
-            dump($choice);
-            
-        }
+        $string = '';
+        $array = $_SESSION["choices"];
 
+        $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($array));
+        foreach($iterator as $key => $value) {
+            $string .= $key . " => " . $value . "<br/>";
+        }
+        var_dump($string);
         die;
+
+        $choices = $string;
+
+        $this->mail->from($request->getParam('email'), $request->getParam('name'))
+            ->to([
+            [
+            'name' => 'Darkroast Digital',
+            'email' => 'kim@darkroast.co',
+            ]
+            ])
+            ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
+            ->send('mail/order.twig', compact('choices'));
+
 
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
