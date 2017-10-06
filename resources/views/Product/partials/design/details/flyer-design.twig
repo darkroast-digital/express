@@ -1,0 +1,53 @@
+<ul class="product-details">
+    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.two }}</li>
+</ul>
+
+<!-- End Details -->
+<div class="field print-detail">
+    <label>Print Details</label>
+</div>
+<div class="field print-detail">
+    <label>Size</label>
+    <input type="radio" name="size" value="4x6" data-print="1"> 4"x6"
+    <input type="radio" name="size" value="4x9" data-print="2"> 4"x9"
+    <input type="radio" name="size" value="6x8" data-print="3"> 6"x8"
+    <input type="radio" name="size" value="8.5x11" data-print="4"> 8.5"x11"
+
+    <label class="quantity-label">Quantity</label>
+    <select name="option[0]quantity" data-select="1">
+        <option value="default" data-price="0" disabled selected>Select</option>
+        <option value="print-flyers-4x6-50" data-price="46">50</option>
+        <option value="print-flyers-4x6-100" data-price="59">100</option>
+        <option value="print-flyers-4x6-500" data-price="74">500</option>
+        <option value="print-flyers-4x6-1000" data-price="84">1000</option>
+        <option value="print-flyers-4x6-2500" data-price="139">2500</option>
+    </select>
+
+    <select name="option[1]quantity" data-select="2">
+        <option value="default" data-price="0" disabled selected>Select</option>
+        <option value="print-flyers-4x9-50" data-price="69">50</option>
+        <option value="print-flyers-4x9-100" data-price="89">100</option>
+        <option value="print-flyers-4x9-500" data-price="124">500</option>
+        <option value="print-flyers-4x9-1000" data-price="135">1000</option>
+        <option value="print-flyers-4x9-2500" data-price="209">2500</option>
+    </select>
+
+    <select name="option[2]quantity" data-select="3">
+        <option value="default" data-price="0" disabled selected>Select</option>
+        <option value="print-flyers-6x8-100" data-price="87">100</option>
+        <option value="print-flyers-6x8-500" data-price="139">500</option>
+        <option value="print-flyers-6x8-1000" data-price="149">1000</option>
+        <option value="print-flyers-6x8-2500" data-price="219">2500</option>
+    </select>
+
+    <select name="option[3]quantity" data-select="4">
+        <option value="default" data-price="0" disabled selected>Select</option>
+        <option value="print-flyers-8.5x11-50" data-price="85">50</option>
+        <option value="print-flyers-8.5x11-100" data-price="104">100</option>
+        <option value="print-flyers-8.5x11-500" data-price="285">500</option>
+    </select>
+    <div class="cost-of-option">
+        <hr>
+        <p><strong>Total: </strong> $<span class="price">{{ product.price }}</span></p>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="field print-detail">
+    <label>Print Details</label>
+</div>
+<div class="field print-detail">
+    <label>Quantity</label>
+    <select name="option[0]quantity">
+        <option value="default" data-price="0" disabled selected>Select</option>
+        <optgroup label='Tri-Fold (8.5"x11")'>
+            <option value="brochure-100-8x11" data-price="89">100</option>
+            <option value="brochure-250-8x11" data-price="160">250</option>
+            <option value="brochure-500-8x11" data-price="235">500</option>
+        </optgroup>
+
+        <optgroup label='Quad-Fold (8.5"x14")'>
+            <option value="brochure-100-8x14" data-price="135">100</option>
+            <option value="brochure-250-8x14" data-price="165">250</option>
+            <option value="brochure-500-8x14" data-price="395">500</option>
+        </optgroup>
+
+    </select>
+    <div class="cost-of-option">
+        <hr>
+        <p><strong>Total: </strong> $<span class="price">{{ product.price }}</span></p>
+    </div>
+</div>
