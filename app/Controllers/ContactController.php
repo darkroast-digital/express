@@ -20,6 +20,10 @@ class ContactController extends Controller
             [
             'name' => 'Darkroast Digital',
             'email' => 'hi@darkroast.co',
+            ],
+            [
+                'name' => 'Josh Stobbs',
+                'email' => 'josh@darkroast.co'
             ]
             ])
             ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
