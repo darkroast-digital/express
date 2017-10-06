@@ -18,6 +18,7 @@ use App\Controllers\ContactController;
 use App\Controllers\Dashboard\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\ProductsController;
+use App\Controllers\SiteController;
 use App\Middleware\AuthMiddleware;
 
 
@@ -27,6 +28,15 @@ use App\Middleware\AuthMiddleware;
 // =========================================================================
 
 $app->get('/', HomeController::class . ':index')->setName('home');
+
+
+
+
+// #SITE
+// =========================================================================
+
+$app->get('/faqs', SiteController::class . ':faqs')->setName('faqs');
+$app->get('/how-it-works', SiteController::class . ':works')->setName('works');
 
 
 

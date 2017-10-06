@@ -18,6 +18,13 @@ class CheckoutController extends Controller
 
     public function order($request, $response, $args)
     {
+        foreach ($_SESSION['choices'] as $choice) {
+            dump($choice);
+            
+        }
+
+        die;
+
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
         }
@@ -66,6 +73,7 @@ class CheckoutController extends Controller
         }
 
         unset($_SESSION['basket']);
+        unset($_SESSION['choices']);
 
         // Redirect to receipt page
         return $response->withRedirect($this->router->pathFor('checkout.order.summary', [

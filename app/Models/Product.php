@@ -17,6 +17,7 @@ class Product extends Model
         'price',
         'category',
         'image',
+        'is-printable',
     ];
 
     public function User()

@@ -20,6 +20,8 @@
     <!-- End Title -->
 
     <form action="{{ path_for('product', {slug: product.slug}) }}" method="post" enctype="multipart/form-data">
+
+        <input type="text" name="product" value="{{ product.name }}" hidden>
         
         {% embed 'Product/partials/' ~ product.category ~ '/main.twig' %}
             {% block description %}{% endblock %}

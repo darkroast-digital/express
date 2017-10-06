@@ -3504,11 +3504,19 @@ progress[value]::-webkit-progress-value {
 |--------------------------------------------------------------------------
 */
 
-.image__cover {
+.image-cover {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+
+.image-contain {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 /*
@@ -4119,6 +4127,23 @@ input[type="file"] {
   width: auto;
   margin-left: .5rem;
   margin-right: .5rem;
+}
+
+.print-confirm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.print-confirm label {
+  margin-bottom: 0;
+}
+
+.print-confirm input {
+  margin: 0 .25rem;
 }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhc3NldHMvY3NzL2FwcC5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
