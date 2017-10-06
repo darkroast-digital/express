@@ -18,13 +18,6 @@ class CheckoutController extends Controller
 
     public function order($request, $response, $args)
     {
-        foreach ($_SESSION['choices'] as $choice) {
-            dump($choice);
-            
-        }
-
-        die;
-
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
         }
