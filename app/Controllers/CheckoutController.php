@@ -66,6 +66,7 @@ class CheckoutController extends Controller
         }
 
         unset($_SESSION['basket']);
+        unset($_SESSION['choices']);
 
         // Redirect to receipt page
         return $response->withRedirect($this->router->pathFor('checkout.order.summary', [

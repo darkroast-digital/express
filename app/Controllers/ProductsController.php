@@ -11,7 +11,10 @@ class ProductsController extends Controller
     public function index($request, $response, $args)
     {
         $product = Product::where('slug', $args['slug'])->first();
-        $details = $product->details;
+
+        if (isset($product->details)) {
+            $details = $product->details;
+        }
 
         if (isset($product->options)) {
             $options = $product->options;
@@ -26,6 +29,14 @@ class ProductsController extends Controller
 
     public function store($request, $response, $args)
     {
+        if (!isset($_SESSION['choices'])) {
+            $_SESSION['choices'] = [];
+         };
+
+         $choices = array_merge($request->getParams(), $_FILES);
+
+         array_push($_SESSION['choices'], $choices);
+
         $product = Product::where('slug', $args['slug'])->first();
         $params = $request->getParams();
 
