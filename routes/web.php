@@ -14,9 +14,11 @@ use App\Controllers\BasketController;
 use App\Controllers\BraintreeController;
 use App\Controllers\CategoryController;
 use App\Controllers\CheckoutController;
+use App\Controllers\ContactController;
 use App\Controllers\Dashboard\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\ProductsController;
+use App\Controllers\SiteController;
 use App\Middleware\AuthMiddleware;
 
 
@@ -26,6 +28,24 @@ use App\Middleware\AuthMiddleware;
 // =========================================================================
 
 $app->get('/', HomeController::class . ':index')->setName('home');
+
+
+
+
+// #SITE
+// =========================================================================
+
+$app->get('/faqs', SiteController::class . ':faqs')->setName('faqs');
+$app->get('/how-it-works', SiteController::class . ':works')->setName('works');
+
+
+
+
+// #HOME
+// =========================================================================
+
+$app->get('/contact', ContactController::class . ':index')->setName('contact');
+$app->post('/contact', ContactController::class . ':post');
 
 
 
@@ -64,6 +84,7 @@ $app->get('/basket', BasketController::class . ':index')->setName('basket');
 
 $app->get('/checkout', CheckoutController::class . ':index')->setName('checkout');
 $app->post('/checkout', CheckoutController::class . ':order');
+$app->get('/checkout/{hash}/summary', CheckoutController::class . ':showOrder')->setName('checkout.order.summary');
 
 
 

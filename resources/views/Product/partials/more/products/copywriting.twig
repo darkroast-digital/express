@@ -1,0 +1,27 @@
+<ul class="product-details">
+    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.one }}</li>
+    <li><img src="/assets/img/revisions.svg" draggable="false"> {{ product.details.two }}</li>
+    <li><img src="/assets/img/product-details/sides.svg" draggable="false"> {{ product.details.three }}</li>
+    <li><img src="/assets/img/satisfaction.svg" draggable="false"> {{ product.details.four }}</li>
+</ul>
+
+<!-- End Details -->
+
+<div class="field">
+    <label for="title">What is the the tile for this piece? <small>(optional)</small></label>
+    <input type="text" name="title">            
+</div>
+
+<div class="field">
+    <label for="keywords">What keywords should be used? <small>(optional)</small></label>
+    <input type="text" name="keywords">            
+</div>
+
+<div class="field is-inline">
+    <label>Word Count</label>
+    <div>
+        <label class="radio"><input type="radio" name="option[0]length" value="200-300"><span class="radio-button"></span> 200 - 300 Words</label>
+        <label class="radio"><input type="radio" name="option[0]length" value="300-500"><span class="radio-button"></span> 300 - 500 Words (+$54)</label>
+        <label class="radio"><input type="radio" name="option[0]length" value="500-800"><span class="radio-button"></span> 500 - 800 Words (+$110)</label>
+    </div>
+</div>

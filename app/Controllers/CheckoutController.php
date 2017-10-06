@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use Braintree_Transaction;
 
@@ -17,6 +18,13 @@ class CheckoutController extends Controller
 
     public function order($request, $response, $args)
     {
+        foreach ($_SESSION['choices'] as $choice) {
+            dump($choice);
+            
+        }
+
+        die;
+
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
         }
@@ -65,9 +73,25 @@ class CheckoutController extends Controller
         }
 
         unset($_SESSION['basket']);
+        unset($_SESSION['choices']);
 
         // Redirect to receipt page
-        return $response->withRedirect($this->router->pathFor('home'));
+        return $response->withRedirect($this->router->pathFor('checkout.order.summary', [
+            'hash' => $hash,
+        ]));
+    }
+
+    public function showOrder($request, $response, $args)
+    {
+        $order = Order::where('hash', $args['hash'])->first();
+
+        $total = 0;
+
+        foreach ($order->products as $product) {
+            $total = $total + $product->price;
+        }
+
+        return $this->view->render($response, 'Checkout/order.twig', compact('order', 'total'));
     }
 }
 
