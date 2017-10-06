@@ -22,16 +22,21 @@ class Basket
 
     public function add(Product $product, $params)
     {
+        // HEYYYYYYYY!!
+
         $variants = [];
         $options = $product->options;
-        $extras = $params['option'];
 
-        foreach ($extras as $extra) {
+        if (isset($params['option'])) {
+            $extras = $params['option'];
 
-            foreach ($options  as $option) {
+            foreach ($extras as $extra) {
 
-                if ($option->slug == $extra) {
-                    array_push($variants, $option);
+                foreach ($options  as $option) {
+
+                    if ($option->slug == $extra) {
+                        array_push($variants, $option);
+                    }
                 }
             }
         }

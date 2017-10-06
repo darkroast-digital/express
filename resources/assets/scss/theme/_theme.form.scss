@@ -147,3 +147,16 @@ input[type="file"] {
         margin-right: .5rem;
     }
 }
+
+.print-confirm {
+    display: flex;
+    align-items: center;
+
+    label {
+        margin-bottom: 0;
+    }
+
+    input {
+        margin: 0 .25rem;
+    }
+}
