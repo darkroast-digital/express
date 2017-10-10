@@ -37,7 +37,7 @@
         {% include 'partials/flash.twig' %}
         
         <nav class="nav">
-            <a href="#0" class="nav-brand"><img src="/assets/img/logo-symbol.svg" draggable="false"></a>
+            <a href="{{ path_for('home') }}" class="nav-brand"><img src="/assets/img/logo-symbol.svg" draggable="false"></a>
             <ul class="nav-navbar">
                 <li><a href="{{ path_for('category', {slug: 'all'} ) }}">All</a></li>
                 <li>
@@ -75,7 +75,7 @@
 
         <div class="content">
             <div class="topbar">
-                <a href="{{ path_for('category', {slug: 'all'} ) }}" class="topbar-brand"><img src="/assets/img/logo.svg" alt="Darkroast Digital | Express" draggable="false"></a>
+                <a href="{{ path_for('home') }}" class="topbar-brand"><img src="/assets/img/logo.svg" alt="Darkroast Digital | Express" draggable="false"></a>
                 <ul>
                     <li><a href="{{ path_for('works') }}">How it works</a></li>
                     <li><a href="{{ path_for('faqs') }}">Faqs</a></li>

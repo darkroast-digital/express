@@ -25,17 +25,15 @@ class CheckoutController extends Controller
         foreach($iterator as $key => $value) {
             $string .= $key . " => " . $value . "<br/>";
         }
-        var_dump($string);
-        die;
 
         $choices = $string;
 
         $this->mail->from($request->getParam('email'), $request->getParam('name'))
             ->to([
-            [
-            'name' => 'Darkroast Digital',
-            'email' => 'kim@darkroast.co',
-            ]
+                [
+                'name' => 'Darkroast Digital',
+                'email' => 'josh@darkroast.co',
+                ]
             ])
             ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
             ->send('mail/order.twig', compact('choices'));
