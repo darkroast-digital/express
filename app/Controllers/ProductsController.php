@@ -33,8 +33,16 @@ class ProductsController extends Controller
             $_SESSION['choices'] = [];
          };
 
-         $choices = array_merge($request->getParams(), $_FILES);
+         $choices = $request->getParams();
 
+         if (($_FILES['files']['tmp_name'][0]) != '') {
+             $choices = array_merge($choices, $_FILES['files']);
+         }
+
+         if (($_FILES['images']['tmp_name'][0]) != '') {
+             $choices = array_merge($choices, $_FILES['images']);
+         }
+         
          array_push($_SESSION['choices'], $choices);
 
         $product = Product::where('slug', $args['slug'])->first();
