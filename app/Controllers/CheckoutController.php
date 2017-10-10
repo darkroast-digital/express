@@ -39,8 +39,7 @@ class CheckoutController extends Controller
             ])
             ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
             ->send('mail/order.twig', compact('choices'));
-
-
+      
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
         }
