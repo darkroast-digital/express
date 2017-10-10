@@ -35,13 +35,17 @@ class ProductsController extends Controller
 
          $choices = $request->getParams();
 
-         if (($_FILES['files']['tmp_name'][0]) != '') {
-             $choices = array_merge($choices, $_FILES['files']);
+         if (isset($_FILES['files'])) {
+             if (($_FILES['files']['tmp_name'][0]) != '') {
+                 $choices = array_merge($choices, $_FILES['files']);
+             }
          }
 
-         if (($_FILES['images']['tmp_name'][0]) != '') {
-             $choices = array_merge($choices, $_FILES['images']);
-         }
+         if (isset($_FILES['images'])) {
+             if (($_FILES['images']['tmp_name'][0]) != '') {
+                 $choices = array_merge($choices, $_FILES['images']);
+             }
+        }
          
          array_push($_SESSION['choices'], $choices);
 

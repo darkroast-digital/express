@@ -23,7 +23,7 @@ class CheckoutController extends Controller
 
         $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($array));
         foreach($iterator as $key => $value) {
-            $string .= $key . " => " . $value . "<br/>";
+            $string .= $key . ': ' . $value . '<br>';
         }
 
         $choices = $string;
@@ -32,11 +32,13 @@ class CheckoutController extends Controller
             ->to([
                 [
                 'name' => 'Darkroast Digital',
-                'email' => 'josh@darkroast.co',
+                'email' => 'joshstobbs@gmail.com',
                 ]
             ])
             ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
             ->send('mail/order.twig', compact('choices'));
+
+        die;
       
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
