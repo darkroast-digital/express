@@ -22,17 +22,27 @@ class CheckoutController extends Controller
 
         $string = '';
 
-        //foreach ($_SESSION['choices'] as $choice) {
-            // dump($choice);
+        foreach ($_SESSION['choices'] as $choice) {
 
-        //     foreach ($choice as $key => $value) {
-        //         print_r(ucfirst(str_replace('-', ' ', $key)) . '<br>');
-        //     }
-        // }
+            foreach ($choice as $key => $value) {
 
-        $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($_SESSION['choices']));
-        foreach($iterator as $key => $value) {
-            $string .= '<li><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong>' . ': ' . $value . '</li>';
+                if (!is_array($value)) {
+                    if ($key === 'product') {
+                        $string .= '<li><h4>' . ucfirst(str_replace('-', ' ', $key)) . ' ' . $value . '</h4></li>';
+                    }
+
+                    $string .= '<li><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong>: ' . $value . '</li>';
+                }
+
+                if (is_array($value)) {
+
+                    $string .= '<li><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong><ul>';
+                        foreach ($value as $k => $v) {
+                            $string .= '<li>' . $v . '</li>';
+                        }
+                    $string .= '</ul></li>';
+                }
+            }
         }
 
         $choices = $string;

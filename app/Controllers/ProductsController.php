@@ -33,6 +33,9 @@ class ProductsController extends Controller
             $_SESSION['choices'] = [];
          };
 
+         // dump($request->getParams());
+         // die;
+
          $choices = $request->getParams();
 
          if (isset($_FILES['files'])) {
