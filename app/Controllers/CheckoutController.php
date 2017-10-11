@@ -21,11 +21,18 @@ class CheckoutController extends Controller
         $details = $request->getParams();
 
         $string = '';
-        $array = $_SESSION['choices'];
 
-        $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($array));
+        //foreach ($_SESSION['choices'] as $choice) {
+            // dump($choice);
+
+        //     foreach ($choice as $key => $value) {
+        //         print_r(ucfirst(str_replace('-', ' ', $key)) . '<br>');
+        //     }
+        // }
+
+        $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($_SESSION['choices']));
         foreach($iterator as $key => $value) {
-            $string .= $key . ': ' . $value . '<br>';
+            $string .= '<li><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong>' . ': ' . $value . '</li>';
         }
 
         $choices = $string;
@@ -39,8 +46,6 @@ class CheckoutController extends Controller
             ])
             ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
             ->send('mail/order.twig', compact('choices', 'details'));
-
-        die;
       
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
