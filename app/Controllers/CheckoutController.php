@@ -18,8 +18,10 @@ class CheckoutController extends Controller
 
     public function order($request, $response, $args)
     {
+        $details = $request->getParams();
+
         $string = '';
-        $array = $_SESSION["choices"];
+        $array = $_SESSION['choices'];
 
         $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($array));
         foreach($iterator as $key => $value) {
@@ -36,7 +38,7 @@ class CheckoutController extends Controller
                 ]
             ])
             ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
-            ->send('mail/order.twig', compact('choices'));
+            ->send('mail/order.twig', compact('choices', 'details'));
 
         die;
       

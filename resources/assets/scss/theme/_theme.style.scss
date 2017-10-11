@@ -392,3 +392,35 @@ tr {
         }
     }
 }
+
+
+
+
+
+// #POPOVER
+// =========================================================================
+
+.popover {
+    position: relative;
+
+    input {
+        width: auto;
+        margin-right: .25rem;
+    }
+
+    &:after {
+        content: attr(data-popover);
+        position: absolute;
+        top: 0;
+        left: 350px;
+        max-width: 300px;
+        opacity: 0;
+    }
+
+    &:hover {
+
+        &:after {
+            opacity: 1;
+        }
+    }
+}

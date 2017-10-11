@@ -3904,6 +3904,28 @@ tr {
   margin-right: .5rem;
 }
 
+.popover {
+  position: relative;
+}
+
+.popover input {
+  width: auto;
+  margin-right: .25rem;
+}
+
+.popover:after {
+  content: attr(data-popover);
+  position: absolute;
+  top: 0;
+  left: 350px;
+  max-width: 300px;
+  opacity: 0;
+}
+
+.popover:hover:after {
+  opacity: 1;
+}
+
 /*
 |--------------------------------------------------------------------------
 | #PRODUCT
