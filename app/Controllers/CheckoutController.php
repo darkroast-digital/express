@@ -22,45 +22,6 @@ class CheckoutController extends Controller
 
         $string = '';
 
-        foreach ($_SESSION['choices'] as $choice) {
-
-            foreach ($choice as $key => $value) {
-
-                if (!is_array($value)) {
-                    if ($key === 'product') {
-                        $string .= '<li><h4>' . ucfirst(str_replace('-', ' ', $key)) . ' ' . $value . '</h4></li>';
-                    }
-
-                    $string .= '<li><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong>: ' . $value . '</li>';
-                }
-
-                if (is_array($value)) {
-
-                    $string .= '<li><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong><ul>';
-                        foreach ($value as $k => $v) {
-                            $string .= '<li>' . $v . '</li>';
-                        }
-                    $string .= '</ul></li>';
-                }
-            }
-        }
-
-        $choices = $string;
-
-        $this->mail->from($request->getParam('email'), $request->getParam('name'))
-            ->to([
-                [
-                'name' => 'Darkroast Digital',
-                'email' => 'joshstobbs@gmail.com',
-                ]
-            ])
-            ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
-            ->send('mail/order.twig', compact('choices', 'details'));
-      
-        if (!$request->getParam('payment_method_nonce')) {
-            return $response->withRedirect($this->router->pathFor('basket'));
-        }
-
         $customer = User::firstOrCreate([
             'first_name' => $request->getParam('first_name'),
             'last_name' => $request->getParam('last_name'),
@@ -101,6 +62,57 @@ class CheckoutController extends Controller
         // check for a failed transaction
 
         if ($result->success == false) {
+            return $response->withRedirect($this->router->pathFor('basket'));
+        }
+
+        foreach ($_SESSION['choices'] as $choice) {
+
+            foreach ($choice as $key => $value) {
+
+                if (!is_array($value)) {
+                    if ($key === 'product') {
+                        $string .= '<li><h4>' . ucfirst(str_replace('-', ' ', $key)) . ' ' . $value . '</h4></li>';
+                    }
+
+                    $string .= '<li><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong>: ' . $value . '</li>';
+                }
+
+                if (is_array($value)) {
+
+                    $string .= '<li><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong><ul>';
+                        foreach ($value as $k => $v) {
+                            $string .= '<li>' . $v . '</li>';
+                        }
+                    $string .= '</ul></li>';
+                }
+            }
+        }
+
+        $choices = $string;
+
+        // Us email
+        $this->mail->from($request->getParam('email'), $request->getParam('name'))
+            ->to([
+                [
+                'name' => 'Darkroast Digital',
+                'email' => 'joshstobbs@gmail.com',
+                ]
+            ])
+            ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
+            ->send('mail/order.twig', compact('choices', 'details', 'order'));
+
+        // Them email
+        $this->mail->from($request->getParam('email'), $request->getParam('name'))
+            ->to([
+                [
+                'name' => 'Darkroast Digital',
+                'email' => 'joshstobbs@gmail.com',
+                ]
+            ])
+            ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
+            ->send('mail/order.twig', compact('choices', 'details', 'summary'));
+      
+        if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
         }
 

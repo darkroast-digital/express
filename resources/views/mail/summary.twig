@@ -1,6 +1,9 @@
-<h2>A new message from {{ params.name }}</h2><br>
+<h4>Your Darkroast Digital Express Order.</h4>
+<p><strong>Order #{{ order.id }}</strong></p>
 
-Name: {{ params.name }} <br>
-Email: {{ params.email }} <br>
-Phone: {{ params.phone }} <br>
-Message: {{ params.message }}
+{% for products in order.products %}
+    <ul>
+        <li><h6>Product: {{ product.name }}</h6></li>
+        <li>Delivered In: {{ product.time }} {{ product.length }}</li>
+    </ul>
+{% endfor %}
