@@ -109,7 +109,7 @@ class CheckoutController extends Controller
                 'email' => 'joshstobbs@gmail.com',
                 ]
             ])
-            ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
+            ->subject('A order has been placed by ' . $request->getParam('name') . ' on Darkroast Express')
             ->send('mail/order.twig', compact('choices', 'details', 'summary'));
       
         if (!$request->getParam('payment_method_nonce')) {

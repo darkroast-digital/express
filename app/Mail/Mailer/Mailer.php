@@ -70,6 +70,16 @@ class Mailer
             $this->mail->addAddress($receipiant['email'], $receipiant['name']);
         }
 
+        // get files from directories
+
+        // if (isset($this->attatchments)) {
+        //     $uploadPath = __DIR__ . '/../../../assets/uploads/' . $this->attatchments;
+        //     dump(scandir($uploadPath));
+        //     die;
+        // }
+
+        // attatch files to email
+
         if (isset($this->attatchments)) {
             foreach ($this->attatchments as $file) {
                 $this->mail->AddAttachment($file['tmp_name'], $file['name']);

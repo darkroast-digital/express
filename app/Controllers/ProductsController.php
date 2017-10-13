@@ -33,21 +33,33 @@ class ProductsController extends Controller
             $_SESSION['choices'] = [];
          };
 
-         // dump($request->getParams());
-         // die;
-
          $choices = $request->getParams();
+         $files = $request->getUploadedFiles()['files'];
+         $images = $request->getUploadedFiles()['images'];
 
-         if (isset($_FILES['files'])) {
-             if (($_FILES['files']['tmp_name'][0]) != '') {
-                 $choices = array_merge($choices, $_FILES['files']);
-             }
+         $hash = bin2hex((random_bytes(32)));
+         $uploadPath = __DIR__ . '/../../assets/uploads/' . $hash;
+
+         if (!file_exists($uploadPath)) {
+            mkdir($uploadPath);
+            mkdir($uploadPath . '/files');
+            mkdir($uploadPath . '/images');
          }
 
-         if (isset($_FILES['images'])) {
-             if (($_FILES['images']['tmp_name'][0]) != '') {
-                 $choices = array_merge($choices, $_FILES['images']);
-             }
+         $choices['uploadPath'] = $hash;
+
+        foreach ($files as $file) {
+            if ($file->getError() === UPLOAD_ERR_OK) {
+                $name = $file->getClientFilename();
+                $file->moveTo($uploadPath . '/files/' . $name);
+            }
+        }
+
+        foreach ($images as $image) {
+            if ($image->getError() === UPLOAD_ERR_OK) {
+                $name = $image->getClientFilename();
+                $image->moveTo($uploadPath . '/images/' . $name);
+            }
         }
          
          array_push($_SESSION['choices'], $choices);
