@@ -1,12 +1,11 @@
 <ul class="product-details">
-    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.two }}</li>
+    <li>13oz Scrim Vinyl Banner</li>
+    <li>Matte Finish</li>
+    <li>Hemmed On All Sides</li>
 </ul>
 
 <!-- End Details -->
 
-<div class="field print-detail">
-    <label>Print Details</label> 13ox Scrim Vinyl Banner | Matte Finish | Hemmed on all sides
-</div>
 <div class="field print-detail">
     <label>Size</label>
     <select name="option[0]size">
@@ -27,9 +26,10 @@
             <option value="print-banner-gromets-4x10" data-price="189">4'x10'</option>
         </optgroup>
     </select>
-
+    
+    <hr>
     <div class="cost-of-option">
-        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.price }}"></span></p>
+        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.display_price }}"></span></p>
     </div>
 </div>
 

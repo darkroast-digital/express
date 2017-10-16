@@ -1,16 +1,22 @@
 {% extends 'layouts/app.twig' %}
-{% block pageclass %}product{% endblock %}
-{% block title %}Product{% endblock %}
+{% block pageclass %}{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
 
-<div class="page-images column-1">
-    <p>Examples</p>
-    
-    {% for image in product.images %}
-        <img src="{{ image.path }}" draggable="false">
-    {% endfor %}
+<div class="lightbox">
+    <img src="" draggable="false">
 </div>
+
+{% if product.category != 'print' %}
+    <div class="page-images column-1">
+        <p>Examples</p>
+        
+        {% for image in product.images %}
+            <img src="{{ image.path }}" draggable="false" {% if image.data == 'none' %}{% else %}data-src="{{ image.data }}" class="lightbox-trigger"{% endif %}>
+        {% endfor %}
+    </div>
+{% endif %}
 
 <div class="page-details column-11">
     

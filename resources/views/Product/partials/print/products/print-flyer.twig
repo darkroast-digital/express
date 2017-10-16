@@ -1,16 +1,12 @@
-<ul class="product-details">
-    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.two }}</li>
-</ul>
-
-<!-- End Details -->
-
 <div class="field print-detail is-inline">
     <label>Size</label>
     <input type="radio" name="size" value="4x6" data-print="1"> 4"x6"
     <input type="radio" name="size" value="4x9" data-print="2"> 4"x9"
     <input type="radio" name="size" value="6x8" data-print="3"> 6"x8"
     <input type="radio" name="size" value="8.5x11" data-print="4"> 8.5"x11"
+</div>
 
+<div class="field">
     <label class="quantity-label">Quantity</label>
     <select name="option[0]quantity" data-select="1">
         <option value="default" data-price="0" disabled selected>Select Quantity</option>
@@ -44,8 +40,9 @@
         <option value="print-flyers-8.5x11-100" data-price="104">100</option>
         <option value="print-flyers-8.5x11-500" data-price="285">500</option>
     </select>
-
+    
+    <hr>
     <div class="cost-of-option">
-        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.price }}"></span></p>
+        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.display_price }}"></span></p>
     </div>
 </div>

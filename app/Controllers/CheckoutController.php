@@ -137,5 +137,13 @@ class CheckoutController extends Controller
 
         return $this->view->render($response, 'Checkout/order.twig', compact('order', 'total'));
     }
+
+    public function clear($request, $response, $args)
+    {
+        unset($_SESSION['basket']);
+        unset($_SESSION['choices']);
+
+        return $response->withRedirect($this->router->pathFor('home'));
+    }
 }
 

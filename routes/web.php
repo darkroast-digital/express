@@ -85,6 +85,7 @@ $app->get('/basket', BasketController::class . ':index')->setName('basket');
 $app->get('/checkout', CheckoutController::class . ':index')->setName('checkout');
 $app->post('/checkout', CheckoutController::class . ':order');
 $app->get('/checkout/{hash}/summary', CheckoutController::class . ':showOrder')->setName('checkout.order.summary');
+$app->get('/checkout/clear', CheckoutController::class . ':clear')->setName('checkout.clear');
 
 
 

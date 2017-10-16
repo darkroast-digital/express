@@ -9,12 +9,20 @@
 
 .form-row {
     display: flex;
+
+    @include breakpoint(md) {
+        display: block;
+    }
 }
 
 .field {
     flex: 1 1 auto;
     margin-right: $gutter;
     margin-bottom: $gutter;
+
+    @include breakpoint(md) {
+        margin-right: 0;
+    }
 
     &:last-of-type {
         margin-right: 0;
@@ -37,6 +45,10 @@
     small {
         color: color(grey);
         margin-left: .25rem;
+
+        @include breakpoint(md) {
+            display: block;
+        }
     }
 
     &.is-inline {
@@ -48,6 +60,10 @@
 
         div {
             display: flex;
+
+            @include breakpoint(md) {
+                display: block;
+            }
         }
 
         label {
@@ -85,6 +101,10 @@
 
     &.is-columns {
         columns: $gutter 5;
+
+        @include breakpoint(md) {
+            columns: $gutter 2;
+        }
 
         label {
             margin-bottom: .5rem;
@@ -159,4 +179,37 @@ input[type="file"] {
     input {
         margin: 0 .25rem;
     }
+}
+
+.logo-type {
+
+    img {
+        min-width: 75px !important;
+        max-width: 75px !important;
+        max-height: 50px;
+        object-fit: contain;
+    }
+
+    label {
+        display: block !important;
+    }
+    
+    span {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-character {
+        display: flex !important;
+
+        input {
+            display: none;
+        }
+
+        span {
+            margin-left: 1rem;
+            display: block;
+        }
+    }
+
 }

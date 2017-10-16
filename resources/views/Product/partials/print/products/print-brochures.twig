@@ -1,9 +1,3 @@
-<ul class="product-details">
-    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.two }}</li>
-</ul>
-
-<!-- End Details -->
-
 <div class="field print-detail">
 
     <label>Quantity</label>
@@ -22,8 +16,9 @@
         </optgroup>
 
     </select>
-
+    
+    <hr>
     <div class="cost-of-option">
-        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.price }}"></span></p>
+        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.display_price }}"></span></p>
     </div>
 </div>

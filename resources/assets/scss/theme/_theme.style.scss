@@ -9,6 +9,8 @@
 
 $sidebar-width: 100px;
 
+$mobile-width: 75px;
+
 
 
 
@@ -84,6 +86,10 @@ tr {
     background: color(grey-lighter);
     text-align: center;
 
+    @include breakpoint(md) {
+        width: $mobile-width;
+    }
+
     ul {
         display: block;
         height: auto;
@@ -93,6 +99,10 @@ tr {
         background: color(black);
         height: $sidebar-width;
         padding: .5rem;
+
+        @include breakpoint(md) {
+            height: $mobile-width;
+        }
 
         img {
             height: 100%;
@@ -120,6 +130,10 @@ tr {
     width: calc(100% - #{$sidebar-width});
     height: 100vh;
     overflow-y: scroll;
+
+    @include breakpoint(md) {
+        width: calc(100% - #{$mobile-width});
+    }
 }
 
 
@@ -138,6 +152,10 @@ tr {
     width: 100%;
     background: color(grey-lighter);
 
+    @include breakpoint(md) {
+        height: $mobile-width;
+    }
+
     &-brand {
         display: block;
         width: 400px;
@@ -155,15 +173,30 @@ tr {
         margin-bottom: 0;
         margin-right: 10rem;
         list-style-type: none;
+
+        @include breakpoint(md) {
+            margin-right: 7rem;
+        }
     }
 
     li {
         margin-bottom: 0;
 
+        @include breakpoint(md) {
+            display: none;
+        }
+
         &:first-of-type {
 
             &:after {
                 content: '|';
+            }
+        }
+
+        &:last-of-type {
+            
+            @include breakpoint(md) {
+                display: block;
             }
         }
 
@@ -222,13 +255,31 @@ tr {
     padding: $gutter;
     display: flex;
 
+    @include breakpoint(md) {
+        min-height: calc(90vh - #{$mobile-width});
+        margin-top: $mobile-width;
+    }
+
     &-images {
         border-right: solid 1px color(grey-lighter);
         padding-right: $gutter * .5;
 
+        @include breakpoint(md) {
+            order: 2;
+            padding-right: 0;
+            border-right: none;
+        }
+
         img {
             max-width: 100%;
             margin-bottom: $gutter * .5;
+        }
+    }
+
+    &-details {
+        
+        @include breakpoint(md) {
+            order: 1;
         }
     }
 }
@@ -338,11 +389,19 @@ tr {
     align-items: flex-end;
     padding: $gutter $gutter * 2;
 
+    @include breakpoint(md) {
+        display: block;
+    }
+
     p {
         margin-bottom: 0;
 
         a {
             font-weight: bold;
+
+            @include breakpoint(md) {
+                display: block;
+            }
         }
     }
     
@@ -400,21 +459,43 @@ tr {
 // #POPOVER
 // =========================================================================
 
-.popover {
-    position: relative;
+.popovers {
+
+    label {
+        margin-bottom: $gutter * .5;
+    }
 
     input {
         width: auto;
         margin-right: .25rem;
     }
 
+    svg {
+        height: 1rem;
+    }
+}
+
+.popover {
+    position: relative;
+    display: inline-block;
+    font-style: normal;
+    cursor: pointer;
+
     &:after {
         content: attr(data-popover);
         position: absolute;
+        z-index: z(middle);
+        display: block;
         top: 0;
-        left: 350px;
-        max-width: 300px;
+        left: 110%;
+        width: 500px;
+        padding: $gutter * .5;
+        color: color(grey-lightest);
+        background: color(grey-darkest);
+        border-radius: radius(small);
+        @include shadow(raised);
         opacity: 0;
+        pointer-events: none;
     }
 
     &:hover {
@@ -422,5 +503,31 @@ tr {
         &:after {
             opacity: 1;
         }
+    }
+}
+
+
+
+
+
+// #LIGHTBOX
+// =========================================================================
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: z(higher);
+    height: 100%;
+    width: 100%;
+    background: rgba(color(black), .8);
+    cursor: pointer;
+    visibility: hidden;
+
+    &-trigger {
+        cursor: pointer;
     }
 }

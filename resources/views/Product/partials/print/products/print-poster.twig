@@ -1,16 +1,12 @@
-<ul class="product-details">
-    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.two }}</li>
-</ul>
-
-<!-- End Details -->
-
-<div class="field print-detail">
-    <label>Size</label>
+<div class="field print-detail is-inline">
+    <h6>Choose Your Size</h6>
     <input type="radio" name="size" value="8.5x11" data-print="1"> 8.5"x11"
     <input type="radio" name="size" value="11x17" data-print="2"> 11"x17"
     <input type="radio" name="size" value="12x18" data-print="3"> 12"x18"
+</div>
 
-    <label class="quantity-label">Quantity</label>
+<div class="field">
+    <h6 class="quantity-label">Choose Your Quantity</h6>
     <select name="option[0]quantity" data-select="1">
         <option value="default" data-price="0" disabled selected>Select Quantity</option>
         <option value="print-poster-8.5x11-25" data-price="45">25</option>
@@ -19,7 +15,7 @@
         <option value="print-poster-8.5x11-250" data-price="115">250</option>
     </select>
 
-    <select name="option[1]quantity" data-select="1">
+    <select name="option[1]quantity" data-select="2">
         <option value="default" data-price="0" disabled selected>Select Quantity</option>
         <option value="print-poster-11x17-25" data-price="74">25</option>
         <option value="print-poster-11x17-50" data-price="89">50</option>
@@ -27,14 +23,17 @@
         <option value="print-poster-11x17-250" data-price="215">250</option>
     </select>
 
-    <select name="option[2]quantity" data-select="1">
+    <select name="option[2]quantity" data-select="3">
         <option value="default" data-price="0" disabled selected>Select Quantity</option>
         <option value="print-poster-12x18-25" data-price="59">25</option>
         <option value="print-poster-12x18-50" data-price="68">50</option>
         <option value="print-poster-12x18-100" data-price="114">100</option>
         <option value="print-poster-12x18-250" data-price="205">250</option>
     </select>
-    <div class="cost-of-option">
-        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.price }}"></span></p>
-    </div>
+
+</div>
+
+<hr>
+<div class="cost-of-option">
+    <p><strong>Total: </strong> $<span class="price" data-price="{{ product.display_price }}"></span></p>
 </div>

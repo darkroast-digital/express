@@ -96,6 +96,12 @@ if (overlay) {
     });
 }
 
+if (overlay) {
+    overlay.addEventListener('click', function () {
+        lightbox.removeClass('is-open');
+    });
+}
+
 
 
 
@@ -234,6 +240,11 @@ $(form).submit(function(e) {
     });
 });
 
+
+
+
+
+
 // Option Pricing
 
 var basePrice = $('span.price').data('price');
@@ -263,4 +274,28 @@ $('[data-print]').click(function() {
     $('[data-select]').hide();
     $('[data-select="' + thisPrint + '"]').show();
     $('.quantity-label').show();
+});
+
+
+
+
+// #LIGHTBOX
+// =========================================================================
+
+var lightbox = $('.lightbox');
+var lightboxImage = $('.lightbox img');
+var lightboxTrigger = $('.lightbox-trigger');
+
+lightbox.hide();
+
+lightboxTrigger.click(function () {
+    var image = $(this).data('src');
+
+    lightbox.css('visibility', 'visible');
+    lightbox.fadeIn('fast');
+    lightboxImage.attr('src', image);
+});
+
+lightbox.click(function () {
+    lightbox.fadeOut('fast');
 });

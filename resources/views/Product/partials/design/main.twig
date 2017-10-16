@@ -15,6 +15,10 @@
     <input type="text" name="describe">
 </div>
 
+{% if product.slug == 'logo-design' %}
+    {% include 'Product/partials/design/logo.twig' %}
+{% endif %}
+
 <div class="field is-inline">
     <label>Typography <small>you can select more than one</small></label>
     <div>
