@@ -90,26 +90,61 @@ class CheckoutController extends Controller
 
         $choices = $string;
 
+        $filesArray = [];
+        $imagesArray = [];
+
+        $zipname = __DIR__ . '/../../assets/archives/order_' . $order->id . '.zip';
+        $zip = new \ZipArchive;
+
+        $zip->open($zipname, $zip::CREATE | $zip::OVERWRITE);
+
+        foreach ($_SESSION['choices'] as $_choice) {
+
+            $path = realpath(__DIR__ . '/../../assets/uploads/' . $_choice['uploadPath']);
+
+            $files = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($path),
+                \RecursiveIteratorIterator::LEAVES_ONLY
+            );
+
+            foreach ($files as $name => $file)
+            {
+                // Skip directories (they would be added automatically)
+                if (!$file->isDir())
+                {
+                    // Get real and relative path for current file
+                    $filePath = $file->getRealPath();
+                    $relativePath = substr($filePath, strlen($path) + 1);
+
+                    // Add current file to archive
+                    $zip->addFile($filePath, $relativePath);
+                }
+            }
+        }
+
+        $zip->close();
+
         // Us email
-        $this->mail->from($request->getParam('email'), $request->getParam('name'))
+        $this->mail->from($request->getParam('email'), $request->getParam('first_name') . ' ' . $request->getParam('last_name'))
             ->to([
                 [
                 'name' => 'Darkroast Digital',
-                'email' => 'joshstobbs@gmail.com',
+                'email' => 'josh@darkroast.co',
                 ]
             ])
-            ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
-            ->send('mail/order.twig', compact('choices', 'details', 'order'));
+            ->attatchments(__DIR__ . '/../../assets/archives/order_' . $order->id . '.zip')
+            ->subject('An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express')
+            ->send('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray'));
 
         // Them email
-        $this->mail->from($request->getParam('email'), $request->getParam('name'))
+        $this->mail->from($request->getParam('email'), $request->getParam('first_name') . ' ' . $request->getParam('last_name'))
             ->to([
                 [
                 'name' => 'Darkroast Digital',
                 'email' => 'joshstobbs@gmail.com',
                 ]
             ])
-            ->subject('A order has been placed by ' . $request->getParam('name') . ' on Darkroast Express')
+            ->subject('Hey ' . $request->getParam('first_name') . '! Here\'s a summary of your Darkroast Express order.')
             ->send('mail/order.twig', compact('choices', 'details', 'summary'));
       
         if (!$request->getParam('payment_method_nonce')) {
