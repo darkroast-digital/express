@@ -243,6 +243,17 @@ $(form).submit(function(e) {
 
 
 
+// #FILE UPLOAD
+// =========================================================================
+
+var uploadInput = $('input[type="file"]');
+
+uploadInput.on('change', function () {
+    $(this).parent().find('span').css('display', 'none');
+    $(this).parent().after('<p style="display: inline-block; color: #FFFFFF; background: #43CB9D; padding: .25rem; border-radius: 2px; box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, .1);">Files Uploaded!</p>');
+});
+
+
 
 
 // Option Pricing
@@ -252,7 +263,7 @@ basePrice = parseInt(basePrice);
 var optionPrice = $('.print-detail select option:selected').data('price');
 //optionPrice = parseInt(optionPrice);
 var newPrice = basePrice + optionPrice;
-$('span.price').text(newPrice);
+// $('span.price').text(newPrice);
 
 $('.print-detail select').change(function() {
     optionPrice = $('.print-detail select option:selected').data('price');
@@ -265,7 +276,7 @@ $('.print-detail select').change(function() {
 
 // Show Size Options
 
-$("[data-select]").hide();
+$('[data-select]').hide();
 $('.quantity-label').hide();
 
 $('[data-print]').click(function() {
@@ -298,4 +309,57 @@ lightboxTrigger.click(function () {
 
 lightbox.click(function () {
     lightbox.fadeOut('fast');
+});
+
+$.get('https://ipinfo.io', function(response) {
+    console.log(response.city, response.country);
+
+    if (response.country == 'US') {
+        $('.us-popup').fadeIn();
+    }
+}, 'jsonp');
+
+$('.us-popup-close').click(function() {
+    $('.us-popup').fadeOut();
+});
+
+var cad = $.getJSON('http://api.fixer.io/latest', function(data) {
+  fx.rates = data.rates
+  var rate = fx(1).from('USD').to('CAD');
+  var conversion = rate.toFixed(4);
+  var cad = Math.round(conversion * 100) / 100;
+
+  $('.cad-container').text(cad);
+});
+
+var rates = {
+    'CA': {
+        'ON': 13,
+        'QC': 14.975,
+        'NS': 15,
+        'NB': 15,
+        'MB': 13,
+        'BC': 12,
+        'PE': 15,
+        'SK': 11,
+        'AB': 5,
+        'NL': 15,
+        'NT': 5,
+        'YT': 5,
+        'NU': 5
+    }
+};
+
+var countryInput = document.querySelector('select[name="country"]');
+var provinceInput = document.querySelector('select[name="province"]');
+var subtotal = document.querySelector('input[name="subtotal"]').value;
+var taxContainer = document.querySelector('.tax-container');
+var totalContainer = document.querySelector('.total-container');
+
+provinceInput.addEventListener('change', function () {
+    var rate = rates[countryInput.value][this.value];
+    var tax = subtotal * rate / 100;
+
+    taxContainer.innerHTML = tax;
+    totalContainer.innerHTML = +subtotal + +tax;
 });

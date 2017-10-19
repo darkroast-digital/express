@@ -14,6 +14,122 @@ $mobile-width: 75px;
 
 
 
+// #POPUP
+// =========================================================================
+
+.us-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: z(highest);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    display: none;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(color(white), .8);
+    }
+
+    .block {
+        position: relative;
+        z-index: 10;
+        max-width: 50%;
+        padding: .5rem;
+        text-align: center;
+        background: color(white);
+        @include shadow(huge);
+        overflow: scroll;
+
+        @include breakpoint(md) {
+            max-width: 75%;
+            max-height: 75%;
+        }
+
+        > div {
+            height: 100%;
+            padding: $gutter;
+            background: #F4F4F4;
+
+            @include breakpoint(md) {
+                padding: $gutter * .5;
+            }
+        }
+    }
+
+    &-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: .5rem;
+        background: transparent !important;
+        cursor: pointer;
+    }
+
+    h2 {
+        text-transform: uppercase;
+
+        @include breakpoint(md) {
+            font-size: 2rem;
+        }
+    }
+
+    em {
+        font-style: normal;
+        color: color(success);
+    }
+
+    p {
+        font-size: .75rem;
+    }
+
+    &-compare {
+        position: relative;
+        z-index: 10;
+        
+        p {
+            @include rhythm(4);
+
+            @include breakpoint(md) {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+        margin-top: -3rem;
+
+        @include breakpoint(md) {
+            margin-top: -1rem;
+        }
+    }
+}
+
+.popup-image {
+    
+    @include breakpoint(md) {
+        display: none;
+    }
+
+    &-mobile {
+        display: none;
+
+        @include breakpoint(md) {
+            display: block;
+        }
+    }
+}
+
 
 // #MEDIA OBJECT
 // =========================================================================

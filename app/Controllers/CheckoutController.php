@@ -19,7 +19,8 @@ class CheckoutController extends Controller
     public function order($request, $response, $args)
     {
         $details = $request->getParams();
-
+        $products = $this->basket->products();
+        $hash = bin2hex((random_bytes(32)));
         $string = '';
 
         $customer = User::firstOrCreate([
@@ -31,13 +32,10 @@ class CheckoutController extends Controller
             'password' => password_hash('null', PASSWORD_DEFAULT),
         ]);
 
-        $products = $this->basket->products();
-        $hash = bin2hex((random_bytes(32)));
-
         $order = $customer->orders()->create([
             'hash' => $hash,
             'paid' => false,
-            'total' => $this->basket->subTotal(),
+            'total' => $this->basket->total($details['country'], $details['province']),
         ]);
 
         $order->products()->saveMany(

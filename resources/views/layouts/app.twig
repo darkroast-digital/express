@@ -32,6 +32,32 @@
 
 </head>
 <body>
+
+    <div class="us-popup">
+        <div class="block">
+            <div class="us-popup-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+                    <g class="nc-icon-wrapper" fill="#444444">
+                        <path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <h2>Wecome!</h2>
+                <p><strong>Hey Neighbour</strong>, thanks for checking out our site.  Before you start browsing around we just want to let you in on a secret...</p>
+                <p><strong>We're Canadian.</strong></p>
+                <p><strong>What's the big deal?</strong> Well for you, because all of our prices are in Canadian Dollars, you automatically save around 20%-30% with the exchange rate and you don't have to pay sales tax!</p>
+                <p><strong>Pretty cool, eh?</strong></p>
+                <div class="us-popup-compare">
+                    <small>Current USD/CAD Exchange Rate:</small>
+                    <p><strong>$1.00</strong> USD &rarr; <em><strong>$<span class="cad-container"></span></strong> CAD</em></p>
+                </div>
+                <img src="/assets/img/popup.png" draggable="false" class="popup-image">
+                <img src="/assets/img/popup-mobile.png" draggable="false" class="popup-image-mobile">
+            </div>
+        </div>
+    </div>
+
     <div class="{% block pageclass %}{% endblock %}" id="app">
 
         {% include 'partials/flash.twig' %}

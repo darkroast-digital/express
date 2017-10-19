@@ -1,0 +1,90 @@
+<ul class="product-details">
+    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.two }}</li>
+    <li><img src="/assets/img/revisions.svg" draggable="false"> {{ product.details.three }}</li>
+    <li><img src="/assets/img/designer.svg" draggable="false"> {{ product.details.four }}</li>
+    <li><img src="/assets/img/satisfaction.svg" draggable="false"> {{ product.details.five }}</li>
+    <li><img src="/assets/img/satisfaction.svg" draggable="false"> {{ product.details.six }}</li>
+    <li><img src="/assets/img/satisfaction.svg" draggable="false"> {{ product.details.seven }}</li>
+    <li><img src="/assets/img/satisfaction.svg" draggable="false"> {{ product.details.eight }}</li>
+</ul>
+
+<!-- End Details -->
+
+<div class="media-object">
+    <div class="media-object-image">
+        <img src="/assets/img/web-ex.svg" draggable="false">
+    </div>
+    <div class="media-object-content">
+        <p><strong>This is a Simple Single Page Website, perfect for small businesses, landing pages and personal use.</strong> <br>If you need a multi-page site, custom web applications, or e-commerce please contact us so we can talk about a solution that better suits your needs.</p>
+        <p>If you have any questions or want us to walk you through this form just let us know. We’d be happy to help.</p>
+        <footer>
+            <ul>
+                <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g class="nc-icon-wrapper" fill="#444444">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+    </g>
+</svg>1.519.915.5884</li>
+                <li><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g class="nc-icon-wrapper" fill="#444444">
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"></path>
+    </g>
+</svg>hi@darkroast.co</li>
+            </ul>
+        </footer>
+    </div>
+</div>
+
+<h4><strong>Step 1</strong> - Setup</h4>
+<hr>
+
+<div class="field is-inline is-flexed">
+    What will the site be used for? 
+    <label><input type="checkbox" name="use-case[]" value="Business"> Business</label>
+    <label><input type="checkbox" name="use-case[]" value="Landing Page"> Landing Page</label>
+    <label><input type="checkbox" name="use-case[]" value="Personal"> Personal</label>
+    <label><input type="checkbox" name="use-case[]" value="Other"> Other</label>
+</div>
+
+<div class="field is-inline is-flexed">
+    Do you already have a domain name? 
+    <label><input type="radio" name="has-domain" value="yes"> Yes</label>
+    <label><input type="radio" name="has-domain" value="no"> No</label>
+</div>
+
+<div class="field">
+    <label for="domain-name">What is your domain name? <small>(or the one you'd like.)</small></label>
+    <input type="text" name="domain-name">
+</div>
+
+<div class="field">
+    <label for="custom-email">Will you need custom email addresses?<strong> (+$139 / per email address/year)</strong></label>
+    <select name="option[10]custom-email">
+        <option value="no" selected>No</option>
+        <option value="custom-email" >1</option>
+        <option value="custom-email-2" >2</option>
+        <option value="custom-email-3" >3</option>
+        <option value="custom-email-4" >4</option>
+        <option value="custom-email-5" >5</option>
+    </select>
+</div>
+
+<!-- End Step One -->
+
+<h4><strong>Step 2</strong> - Layout</h4>
+<hr>
+<p><strong>You can select up to 5 of the following content sections.</strong></p>
+<p>Navigation Menu, Header and Footer are included.</p>
+
+<div class="field is-columns is-inline">
+    {% include 'Product/partials/web/layout.twig' %}
+</div>
+
+<!-- End Step Two -->
+
+<h4><strong>Step 3</strong> - Features</h4>
+<hr>
+
+{% include 'Product/partials/web/popovers.twig' %}
+
+<h4><strong>Step 4</strong> - Design</h4>
+<hr>

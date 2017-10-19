@@ -1,9 +1,83 @@
-<h4>Your Darkroast Digital Express Order.</h4>
-<p><strong>Order #{{ order.id }}</strong></p>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <title></title>
+  <!--[if !mso]><!-- -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="text/css">
+  #outlook a { padding: 0; }
+  .ReadMsgBody { width: 100%; }
+  .ExternalClass { width: 100%; }
+  .ExternalClass * { line-height:100%; }
+  body { margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  table, td { border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+  img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+  p { display: block; margin: 13px 0; }
+</style>
+<!--[if !mso]><!-->
+<style type="text/css">
+  @media only screen and (max-width:480px) {
+    @-ms-viewport { width:320px; }
+    @viewport { width:320px; }
+  }
+</style>
+<!--<![endif]-->
+<!--[if mso]>
+<xml>
+  <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+  </o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<!--[if lte mso 11]>
+<style type="text/css">
+  .outlook-group-fix {
+    width:100% !important;
+  }
+</style>
+<![endif]-->
 
-{% for products in order.products %}
-    <ul>
-        <li><h6>Product: {{ product.name }}</h6></li>
-        <li>Delivered In: {{ product.time }} {{ product.length }}</li>
-    </ul>
-{% endfor %}
+<!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
+    <style type="text/css">
+
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+
+    </style>
+  <!--<![endif]--></head>
+<body style="background: #F4F8F9;">
+  
+  <div class="mj-container" style="background-color:#F4F8F9;"><!--[if mso | IE]>
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]--><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px;"><!--[if mso | IE]>
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="vertical-align:undefined;width:300px;">
+      <![endif]--><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;" align="center" border="0"><tbody><tr><td><img alt="" height="auto" src="http://express.darkroast.co/assets/img/email/header.jpg" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="550"></td></tr></tbody></table><!--[if mso | IE]>
+      </td><td style="vertical-align:undefined;width:300px;">
+      <![endif]--><div style="margin:0px auto;max-width:600px;background:white;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:white;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px;"><!--[if mso | IE]>
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="vertical-align:undefined;width:100px;">
+      <![endif]--><div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:22px;text-align:left;margin-bottom: 12px">Hey! {{ details.name }}</div><!--[if mso | IE]>
+      </td><td style="vertical-align:undefined;width:100px;">
+      <![endif]--><div style="cursor:auto;color:#707274;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:left;margin-bottom: 18px">Thank you for your recent order on Darkroast Digital Express, below you'll find a summary of what you ordered.</div><!--[if mso | IE]>
+      </td><td style="vertical-align:undefined;width:100px;">
+      <![endif]--><div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:bold;line-height:22px;text-align:left;">Order #{{ order.id }}</div>{% for products in order.products %}<ul>
+                        <li><h6>Product: {{ product.name }}</h6></li>
+                        <li>Delivered In: {{ product.time }} {{ product.length }}</li>
+                    </ul>{% endfor %}<!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></div>
+</body>
+</html>

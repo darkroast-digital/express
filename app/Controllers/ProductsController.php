@@ -34,8 +34,13 @@ class ProductsController extends Controller
          };
 
          $choices = $request->getParams();
-         $files = $request->getUploadedFiles()['files'];
-         $images = $request->getUploadedFiles()['images'];
+         if (isset($request->getUploadedFiles()['files'])) {
+             $files = $request->getUploadedFiles()['files'];
+         }
+
+         if (isset($request->getUploadedFiles()['images'])) {
+             $images = $request->getUploadedFiles()['images'];
+         }
 
          $hash = bin2hex((random_bytes(32)));
          $uploadPath = __DIR__ . '/../../assets/uploads/' . $hash;
@@ -55,10 +60,12 @@ class ProductsController extends Controller
             }
         }
 
-        foreach ($images as $image) {
-            if ($image->getError() === UPLOAD_ERR_OK) {
-                $name = $image->getClientFilename();
-                $image->moveTo($uploadPath . '/images/' . $name);
+        if (isset($request->getUploadedFiles()['images'])) {
+            foreach ($images as $image) {
+                if ($image->getError() === UPLOAD_ERR_OK) {
+                    $name = $image->getClientFilename();
+                    $image->moveTo($uploadPath . '/images/' . $name);
+                }
             }
         }
          

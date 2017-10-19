@@ -7,28 +7,17 @@
 
 <!-- End Details -->
 
-<div class="field design-size is-inline">
+<div class="field design-size">
     <label>What size do you need? <small>(feet)</small></label>
-    
-    <div>
-        <div>
-            <p>L</p>
-            <select name="length">
-                <option value="12" selected>12"</option>
-                <option value="24">24"</option>
-                <option value="36">36"</option>
-            </select>
-        </div>
-        
-        <div>
-            <p>W</p>
-            <select name="width">
-                <option value="4.5" selected>4.5"</option>
-                <option value="9">9"</option>
-                <option value="13.5">13.5"</option>
-            </select>
-        </div>
-    </div>
+
+    <select name="size">
+        <option value="default" disabled selected>Select</option>
+        <option value="banner-2x4">2'x4'</option>
+        <option value="banner-3x5">3'x5'</option>
+        <option value="banner-4x6">4'x6'</option>
+        <option value="banner-3x8">3'x8'</option>
+        <option value="banner-4x10">4'x10'</option>
+    </select>
 </div>
 
 <div class="field radio design-orientation">

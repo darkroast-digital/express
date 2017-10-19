@@ -2,22 +2,22 @@
 
 <div class="field">
     <label for="">Company Name</label>
-    <input type="text" name="">            
+    <input type="text" name="company-name">            
 </div>
 
 <div class="field">
-    <label for="">Old/ Current Website</label>
-    <input type="text" name="">            
+    <label for="">Old/ Current Website <small>optional</small></label>
+    <input type="text" name="old-or-current-website">            
 </div>
 
 <div class="field">
     <label for="">Links to websites you like <small>optional - if more than one separate by commas</small></label>
-    <input type="text" name="">        
+    <input type="text" name="website-links">        
 </div>
 
 <div class="field">
     <label for="">Describe Your Business <small>i.e. industry, services, products</small></label>
-    <input type="text" name="">       
+    <input type="text" name="business-description">       
 </div>
 
 <div class="field is-inline">
@@ -37,17 +37,17 @@
 
 <div class="field">
     <label for="">Colours and Textures <small>i.e. Blue& Gold or Red, Black, Yellow</small></label>
-    <input type="text" name="">        
+    <input type="text" name="colours-and-textures">        
 </div>
 
-<div class="field"><label>What best describes what you're looking for? <small>(you can choose more than one)</small></label></div>
+<div class="field"><label>Describe the look you're going for <small>(you can choose more than one)</small></label></div>
 <div class="field is-columns is-inline">
     {% include 'Product/partials/design/description.twig' %}
 </div>
 
 <div class="field">
-    <label for="">Themes and Images <small>you can select more than one</small></label>
-    <input type="text" name="">       
+    <label for="">Themes and Images <small>i.e Coffe Beans, Mountains, Winter Time (you can select more than one)</small></label>
+    <input type="text" name="themes-and-images">       
 </div>
 
 <h4><strong>Step 4</strong> - Content</h4>
@@ -83,5 +83,5 @@ You can send us this later if you don’t have it yet.</p>
 
 <div class="field">
     <label for="">Additional Instructions</label>
-    <textarea name=""></textarea>
+    <textarea name="instructions"></textarea>
 </div>

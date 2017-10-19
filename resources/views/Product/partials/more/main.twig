@@ -2,61 +2,26 @@
 
 <div class="field">
     <label for="">Company Name</label>
-    <input type="text" name="">            
+    <input type="text" name="company-name">            
 </div>
 
 <div class="field">
     <label for="">Links to Social Media Page where it will be used (or Website)<small>optional - if more than one separate by commas</small></label>
-    <input type="text" name="">        
+    <input type="text" name="social-media-links">        
 </div>
 
 <div class="field">
     <label for="">Describe Your Business <small>i.e. industry, services, products</small></label>
-    <input type="text" name="">       
+    <input type="text" name="business-description">       
 </div>
 
-<div class="field is-inline">
-    <label>Typography <small>you can select more than one</small></label>
-    <div>
-        <label><input type="checkbox" name="typography" value="script"><img src="/assets/img/products/design/typography/script.jpg" alt="script"></label>
-        <label><input type="checkbox" name="typography" value="serif"><img src="/assets/img/products/design/typography/serif.jpg" alt="serif"></label>
-        <label><input type="checkbox" name="typography" value="sans-serif"><img src="/assets/img/products/design/typography/sans-serif.jpg" alt="sans-serif"></label>
-        <label><input type="checkbox" name="typography" value="slab"><img src="/assets/img/products/design/typography/slab.jpg" alt="slab"></label>
-        <label><input type="checkbox" name="typography" value="mono"><img src="/assets/img/products/design/typography/mono.jpg" alt="mono"></label>
-        <label><input type="checkbox" name="typography" value="hand"><img src="/assets/img/products/design/typography/hand.jpg" alt="hand"></label>
-        <label><input type="checkbox" name="typography" value="decorative"><img src="/assets/img/products/design/typography/decorative.jpg" alt="decorative"></label>
-        <label><input type="checkbox" name="typography" value="modern"><img src="/assets/img/products/design/typography/modern.jpg" alt="modern"></label>
-        <label><input type="checkbox" name="typography" value="retro"><img src="/assets/img/products/design/typography/retro.jpg" alt="retro"></label>
-    </div>
-</div>
-
-<div class="field">
-    <label for="">Colours and Textures <small>i.e. Blue& Gold or Red, Black, Yellow</small></label>
-    <input type="text" name="">        
-</div>
-
-<div class="field"><label>What best describes what you're looking for? <small>(you can choose more than one)</small></label></div>
+<div class="field"><label>Describe the tone you're going for<small>(you can choose more than one)</small></label></div>
 <div class="field is-columns is-inline">
     {% include 'Product/partials/design/description.twig' %}
 </div>
 
 <div class="field">
-    <label for="">Themes and Images <small>you can select more than one</small></label>
-    <input type="text" name="">       
-</div>
-
-<h4><strong>Step 4</strong> - Content</h4>
-<hr>
-<p>Unless you selected our Copy Writing Feature, you are responsible for providing all of the website copy / content. <br>
-You can send us this later if you don’t have it yet.</p>
-
-<div class="field">
-    <label for="keywords">Search Keywords <small>optional - if more than one separate by commas</small></label>
-    <input type="text" name="keywords" placeholder="What keywords describe your business or website?">
-</div>
-
-<div class="field">
-    <label for="description">Website Content <small>i.e. title, specials, services, photos etc.</small></label>
+    <label for="description">{{ product.name }} Content <small>i.e. title, specials, services, photos etc.</small></label>
     <textarea name="description"></textarea>
 </div>
 
@@ -70,5 +35,5 @@ You can send us this later if you don’t have it yet.</p>
 
 <div class="field">
     <label for="">Additional Instructions</label>
-    <textarea name=""></textarea>
+    <textarea name="instructions"></textarea>
 </div>

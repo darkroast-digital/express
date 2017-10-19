@@ -35,14 +35,6 @@
 <hr>
 
 <div class="field is-inline is-flexed">
-    What will the site be used for? 
-    <label><input type="checkbox" name="use-case[]" value="Business"> Business</label>
-    <label><input type="checkbox" name="use-case[]" value="Landing Page"> Landing Page</label>
-    <label><input type="checkbox" name="use-case[]" value="Personal"> Personal</label>
-    <label><input type="checkbox" name="use-case[]" value="Other"> Other</label>
-</div>
-
-<div class="field is-inline is-flexed">
     Do you already have a domain name? 
     <label><input type="radio" name="has-domain" value="yes"> Yes</label>
     <label><input type="radio" name="has-domain" value="no"> No</label>
@@ -54,14 +46,14 @@
 </div>
 
 <div class="field">
-    <label for="custom-email">Will you need custom email addresses?<strong> (+$139)</strong></label>
-    <select name="custom-email">
-        <option value="no" selected disabled>No</option>
-        <option value="1" >1</option>
-        <option value="2" >2</option>
-        <option value="3" >3</option>
-        <option value="4" >4</option>
-        <option value="5" >5</option>
+    <label for="custom-email">Will you need custom email addresses?<strong> (+$139 / per email address/year)</strong></label>
+    <select name="option[10]custom-email">
+        <option value="no" selected>No</option>
+        <option value="custom-email" >1</option>
+        <option value="custom-email-2" >2</option>
+        <option value="custom-email-3" >3</option>
+        <option value="custom-email-4" >4</option>
+        <option value="custom-email-5" >5</option>
     </select>
 </div>
 
@@ -69,8 +61,8 @@
 
 <h4><strong>Step 2</strong> - Layout</h4>
 <hr>
-<p><strong>You can select up to 5 of the following content sections.</strong></p>
-<p>Navigation Menu, Header and Footer are included.</p>
+<p><strong>You can select up to 4 of the following pages.</strong></p>
+<p>Home Page, Navigation Menu, Header and Footer are included.</p>
 
 <div class="field is-columns is-inline">
     {% include 'Product/partials/web/layout.twig' %}
@@ -81,21 +73,7 @@
 <h4><strong>Step 3</strong> - Features</h4>
 <hr>
 
-<p><strong>Would you like any additional tools or features?</strong></p>
-<p>Social Media integration included and SiteLock Secure 24/7 Monitoring Included.</p>
-
-<div class="field is-inline">
-    <label><input type="checkbox" name="option[0]google-analytics"> Google Analytics Setup <strong>$+49</strong></label>
-    <label><input type="checkbox" name="option[1]ssl-certificate"> 1 Year SSL Certificate <strong>$+139</strong></label>
-    <label><input type="checkbox" name="option[2]seo-booster"> SEO Booster <strong>$+299</strong></label>
-    <label><input type="checkbox" name="option[3]google-my-business"> Google My Business Setup <strong>$+49</strong></label>
-    <label><input type="checkbox" name="option[4]email-subscription"> Email Subscription Manager <strong>$+199</strong></label>
-    <label><input type="checkbox" name="option[5]ecommerce"> Ecommerce - Single Product <strong>$+499</strong></label>
-    <label><input type="checkbox" name="option[6]content-management-1"> Content Managment - 1 Section <strong>$+499</strong></label>
-    <label><input type="checkbox" name="option[7]content-management-2"> Content Management - 2 Sections <strong>$+659</strong></label>
-    <label><input type="checkbox" name="option[8]content-management-3"> Content Management - 3 Sections <strong>$+759</strong></label>
-    <label><input type="checkbox" name="option[9]copy-writing"> Copy Writing - up to 500 words <strong>$+229</strong></label>
-</div>
+{% include 'Product/partials/web/popovers.twig' %}
 
 <h4><strong>Step 4</strong> - Design</h4>
 <hr>

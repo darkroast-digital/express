@@ -5,6 +5,7 @@
 {% block content %}
 
 <form action="{{ path_for('checkout') }}" method="post" class="container container-full" style="width: 100%;">
+    <input type="text" name="subtotal" value="{{ basket.subTotal }}" hidden disabled>
     <div class="column-8">
         <h4>Your Details</h4>
         <hr>
@@ -46,22 +47,29 @@
         </div>
         <div class="form-row">
             <div class="field">
+                <label for="country">Country</label>
+                <select name="country">
+                    <option selected disabled>Choose Your Country</option>
+                    <option value="CA">Canada</option>
+                    <option value="US">United States</option>
+                </select>
+            </div>
+            <div class="field">
                 <label for="province">Province</label>
                 <select name="province">
                     <option selected disabled>Choose your Province</option>
-                    <option value="Alberta">Alberta</option>
-                    <option value="British Columbia">British Columbia</option>
-                    <option value="Manitoba">Manitoba</option>
-                    <option value="New Brunswick">New Brunswick</option>
-                    <option value="Newfoundland">Newfoundland</option>
-                    <option value="Nova Scotia">Nova Scotia</option>
-                    <option value="Ontario">Ontario</option>
-                    <option value="Prince Edward Island">Prince Edward Island</option>
-                    <option value="Quebec">Quebec</option>
-                    <option value="Saskatchewan">Saskatchewan</option>
-                    <option value="Northwest Territories">Northwest Territories</option>
-                    <option value="Nunavut">Nunavut</option>
-                    <option value="Yukon">Yukon</option>
+                    <option value="AB">Alberta</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="NB">New Brunswick</option>
+                    <option value="NL">Newfoundland &amp; Labrador</option>
+                    <option value="ON">Ontario</option>
+                    <option value="PE">Prince Edward Island</option>
+                    <option value="QC">Quebec</option>
+                    <option value="SK">Saskatchewan</option>
+                    <option value="NT">Northwest Territories</option>
+                    <option value="NU">Nunavut</option>
+                    <option value="YT">Yukon</option>
                 </select>
             </div>
             <div class="field">
@@ -88,8 +96,12 @@
                 <td>${{ basket.subTotal | number_format(2) }}</td>
             </tr>
             <tr>
+                <td>Tax: </td>
+                <td>$<span class="tax-container">0.00</span></td>
+            </tr>
+            <tr>
                 <td><strong>Total: </strong></td>
-                <td>${{ basket.subTotal | number_format(2) }}</td>
+                <td>$<span class="total-container">{{ basket.subTotal | number_format(2) }}</span></td>
             </tr>
         </table>
         <button type="submit">Place Order</button>

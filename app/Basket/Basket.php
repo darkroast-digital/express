@@ -129,6 +129,23 @@ class Basket
         return $price;
     }
 
+    public function tax($country, $territory)
+    {
+        $tax = new \App\Tax\Tax($country, $territory);
+        $subtotal = $this->subtotal();
+
+        $taxes = $tax->calculateTax($subtotal);
+
+        return $taxes;
+    }
+
+    public function total($country, $territory)
+    {
+        $total = $this->subtotal() + $this->tax($country, $territory);
+
+        return $total;
+    }
+
     public function remove(Product $product)
     {
         dump(array_search('', $_SESSION['basket']));
