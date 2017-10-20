@@ -3567,8 +3567,12 @@ progress[value]::-webkit-progress-value {
 }
 
 .us-popup .block {
-  position: relative;
-  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 40;
   max-width: 50%;
   padding: .5rem;
   text-align: center;

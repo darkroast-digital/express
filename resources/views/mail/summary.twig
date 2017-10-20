@@ -65,11 +65,11 @@
       <table role="presentation" border="0" cellpadding="0" cellspacing="0">
         <tr>
           <td style="vertical-align:undefined;width:100px;">
-      <![endif]--><div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:22px;text-align:left;margin-bottom: 12px">Hey! {{ details.name }}</div><!--[if mso | IE]>
+      <![endif]--><div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:22px;text-align:left;margin-bottom: 12px">Hey! {{ details.first_name }}</div><!--[if mso | IE]>
       </td><td style="vertical-align:undefined;width:100px;">
       <![endif]--><div style="cursor:auto;color:#707274;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:left;margin-bottom: 18px">Thank you for your recent order on Darkroast Digital Express, below you'll find a summary of what you ordered.</div><!--[if mso | IE]>
       </td><td style="vertical-align:undefined;width:100px;">
-      <![endif]--><div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:bold;line-height:22px;text-align:left;">Order #{{ order.id }}</div>{% for products in order.products %}<ul>
+      <![endif]--><div style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:bold;line-height:22px;text-align:left;">Order #{{ order.id }}</div>{% for product in order.products %}<ul>
                         <li><h6>Product: {{ product.name }}</h6></li>
                         <li>Delivered In: {{ product.time }} {{ product.length }}</li>
                     </ul>{% endfor %}<!--[if mso | IE]>

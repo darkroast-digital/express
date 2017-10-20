@@ -19,6 +19,9 @@ class CheckoutController extends Controller
     public function order($request, $response, $args)
     {
         $details = $request->getParams();
+
+        $_SESSION['details'] = $details;
+
         $products = $this->basket->products();
         $hash = bin2hex((random_bytes(32)));
         $string = '';
@@ -57,7 +60,7 @@ class CheckoutController extends Controller
           ]
         ]);
 
-        // check for a failed transaction
+        //check for a failed transaction
 
         if ($result->success == false) {
             return $response->withRedirect($this->router->pathFor('basket'));
@@ -91,36 +94,58 @@ class CheckoutController extends Controller
         $filesArray = [];
         $imagesArray = [];
 
-        $zipname = __DIR__ . '/../../assets/archives/order_' . $order->id . '.zip';
-        $zip = new \ZipArchive;
+        $filesExist = false;
 
-        $zip->open($zipname, $zip::CREATE | $zip::OVERWRITE);
+        foreach ($_SESSION['choices'] as $choice) {
 
-        foreach ($_SESSION['choices'] as $_choice) {
+            $basePath = __DIR__ . '/../../assets/uploads/' . $choice['uploadPath'];
 
-            $path = realpath(__DIR__ . '/../../assets/uploads/' . $_choice['uploadPath']);
+            $files = glob($basePath . '/files/*');
+            $images = glob($basePath . '/images/*');
 
-            $files = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($path),
-                \RecursiveIteratorIterator::LEAVES_ONLY
-            );
+            if (count($files) != 0) {
+                $filesExist = true;
+            } 
 
-            foreach ($files as $name => $file)
-            {
-                // Skip directories (they would be added automatically)
-                if (!$file->isDir())
-                {
-                    // Get real and relative path for current file
-                    $filePath = $file->getRealPath();
-                    $relativePath = substr($filePath, strlen($path) + 1);
-
-                    // Add current file to archive
-                    $zip->addFile($filePath, $relativePath);
-                }
+            if (count($images) != 0) {
+                $filesExist = true;
             }
         }
 
-        $zip->close();
+        if ($filesExist == true) {
+        
+            $zipname = __DIR__ . '/../../assets/archives/order_' . $order->id . '.zip';
+            $zip = new \ZipArchive;
+
+            $zip->open($zipname, $zip::CREATE | $zip::OVERWRITE);
+
+            foreach ($_SESSION['choices'] as $_choice) {
+
+                $path = realpath(__DIR__ . '/../../assets/uploads/' . $_choice['uploadPath']);
+
+                $files = new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator($path),
+                    \RecursiveIteratorIterator::LEAVES_ONLY
+                );
+
+                foreach ($files as $name => $file)
+                {
+                    // Skip directories (they would be added automatically)
+                    if (!$file->isDir())
+                    {
+                        // Get real and relative path for current file
+                        $filePath = $file->getRealPath();
+                        $relativePath = substr($filePath, strlen($path) + 1);
+
+                        // Add current file to archive
+                        $zip->addFile($filePath, $relativePath);
+                    }
+                }
+            }
+
+            $zip->close();
+
+        }
 
         // Us email
         $this->mail->from($request->getParam('email'), $request->getParam('first_name') . ' ' . $request->getParam('last_name'))
@@ -133,17 +158,6 @@ class CheckoutController extends Controller
             ->attatchments(__DIR__ . '/../../assets/archives/order_' . $order->id . '.zip')
             ->subject('An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express')
             ->send('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray'));
-
-        // Them email
-        $this->mail->from($request->getParam('email'), $request->getParam('first_name') . ' ' . $request->getParam('last_name'))
-            ->to([
-                [
-                'name' => 'Darkroast Digital',
-                'email' => 'joshstobbs@gmail.com',
-                ]
-            ])
-            ->subject('Hey ' . $request->getParam('first_name') . '! Here\'s a summary of your Darkroast Express order.')
-            ->send('mail/order.twig', compact('choices', 'details', 'summary'));
       
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
@@ -160,6 +174,7 @@ class CheckoutController extends Controller
 
     public function showOrder($request, $response, $args)
     {
+        $details = $_SESSION['details'];
         $order = Order::where('hash', $args['hash'])->first();
 
         $total = 0;
@@ -167,6 +182,17 @@ class CheckoutController extends Controller
         foreach ($order->products as $product) {
             $total = $total + $product->price;
         }
+
+        // Them email
+        $this->mail->from('josh@darkroast.co', 'Darkroast Digital')
+            ->to([
+                [
+                'name' => $details['first_name'] . ' ' . $details['last_name'],
+                'email' => 'josh@darkroast.co',
+                ]
+            ])
+            ->subject('Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.')
+            ->send('mail/summary.twig', compact('details', 'order'));
 
         return $this->view->render($response, 'Checkout/order.twig', compact('order', 'total'));
     }
