@@ -5,6 +5,7 @@
     <label>Quantity (sized 3.5"x2")</label>
     <option value="default" data-price="0" disabled selected>Select</option>
     <select name="option[quantity]">
+        <option selected disabled>Select Quantity</option>
         <option value="business-card-250" data-price="29">250</option>
         <option value="business-card-500" data-price="28">500</option>
         <option value="business-card-1000" data-price="45">1000</option>
@@ -12,6 +13,6 @@
     </select>
     <div class="cost-of-option">
         <hr>
-        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.price }}"></span></p>
+        <p><strong>Total <small>(Design + Print)</small> : </strong> $<span class="price" data-price="{{ product.price }}"></span></p>
     </div>
 </div>

@@ -9,9 +9,17 @@
 
 $sidebar-width: 100px;
 
-$mobile-width: 75px;
+$mobile-width: 50px;
 
 
+
+
+// #SEPERATOR
+// =========================================================================
+
+.seperator {
+    background: color(grey-lighter);
+}
 
 
 // #POPUP
@@ -229,11 +237,57 @@ tr {
     }
 
     a:not(.nav-brand) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         color: color(black);
+
+        @include breakpoint(md) {
+            font-size: .75rem;
+            margin-bottom: -1rem;
+        }
 
         img {
             max-height: 50px;
+
+            @include breakpoint(md) {
+                max-height: 35px;
+            }
         }
+    }
+}
+
+.hamburger {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.off-canvas {
+    width: 200px;
+
+    svg {
+        float: right;
+        fill: color(error);
+        margin-bottom: $gutter;
+    }
+
+    ul {
+        list-style-type: none;
+        clear: both;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        color: color(black);
+        font-size: ms(1);
+        text-decoration: none;
+    }
+    
+    img {
+        height: 1rem;
+        margin-right: .5rem;
     }
 }
 
@@ -305,7 +359,8 @@ tr {
             display: none;
         }
 
-        &:first-of-type {
+        &:first-of-type,
+        &:nth-of-type(2) {
 
             &:after {
                 content: '|';

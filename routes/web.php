@@ -23,6 +23,18 @@ use App\Middleware\AuthMiddleware;
 
 
 
+$app->get('/test', function ($request, $response, $args) {
+
+    $mail = mail('josh@darkroast.co', 'A message from Josh Stobbs', 'This is an introductory email!');
+
+    if (!$mail) {
+        echo 'Error';
+    } else {
+        echo 'Success';
+    }
+
+    die;
+});
 
 // #HOME
 // =========================================================================

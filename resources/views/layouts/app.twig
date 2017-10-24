@@ -33,6 +33,21 @@
 </head>
 <body>
 
+    <div class="off-canvas">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+            <g class="nc-icon-wrapper">
+                <path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"></path>
+            </g>
+        </svg>
+        <ul>
+            <li><a href="{{ path_for('works') }}">How it works</a></li>
+            <li><a href="{{ path_for('faqs') }}">Faqs</a></li>
+            <li><a href="{{ path_for('contact') }}">Contact Us</a></li>
+            <li><a href="{{ path_for('basket') }}">{% if basket.count == 0 %}{% else %}<span class="cart-count">{{ basket.count }}</span>{% endif %}<img src="/assets/img/checkout.svg" draggable="false">Cart</a></li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+
     <div class="us-popup">
         <div class="block">
             <div class="us-popup-close">
@@ -97,6 +112,11 @@
                     </a>
                 </li>
             </ul>
+            <div class="hamburger off-canvas-trigger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
 
         <div class="content">
@@ -105,6 +125,7 @@
                 <ul>
                     <li><a href="{{ path_for('works') }}">How it works</a></li>
                     <li><a href="{{ path_for('faqs') }}">Faqs</a></li>
+                    <li><a href="{{ path_for('contact') }}">Contact Us</a></li>
                     <li><a href="{{ path_for('basket') }}">{% if basket.count == 0 %}{% else %}<span class="cart-count">{{ basket.count }}</span>{% endif %}<img src="/assets/img/checkout.svg" draggable="false"></a></li>
                 </ul>
             </div>
@@ -117,13 +138,14 @@
                 <div class="footer-content">
                     <p>Free shipping anywhere in the U.S. and Canada </p>
                     <p>Don't see what you're looking for or looking for a custom solution? No problem, <a href="{{ path_for('contact') }}">let's talk about it. <i class="fa fa-caret-right"></i></a></p>
-                </div>
-                <ul class="footer-nav">
+                    <ul class="footer-nav">
                     <li>visit <strong><a href="http://darkroast.co">darkroast.co</a></strong></li>
                     <li><a href="https://www.facebook.com/darkroastdigital/"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="https://twitter.com/DarkRoastCo"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="https://www.instagram.com/darkroast.co/"><i class="fa fa-instagram"></i></a></li>
                     <li><a href="https://vimeo.com/user45999651"><i class="fa fa-vimeo"></i></a></li>
+                </ul>
+                </div>
             </footer>
         </div>
     </div>

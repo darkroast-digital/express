@@ -188,7 +188,7 @@ class CheckoutController extends Controller
             ->to([
                 [
                 'name' => $details['first_name'] . ' ' . $details['last_name'],
-                'email' => 'josh@darkroast.co',
+                'email' => 'joshstobbs@gmail.com',
                 ]
             ])
             ->subject('Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.')

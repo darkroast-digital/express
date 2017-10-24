@@ -190,15 +190,15 @@ if (printDetails) {
 
 
     printConfirm.addEventListener('click', () => {
-    if (printConfirm.checked) {
-        printDetails.style.display = 'block';
-    } else {
-        printDetails.style.display = 'none';
-        $('input').val("");
-        $('select').val("");
-        $('[data-price]').val("0");
-        $('span.price').text($('span.price').data('price'));
-    }
+        if (printConfirm.checked) {
+            printDetails.style.display = 'block';
+        } else {
+            printDetails.style.display = 'none';
+            $('input').val('');
+            $('select').val('');
+            $('[data-price]').val('0');
+            $('span.price').text($('span.price').data('price'));
+        }
     });
 
 }
@@ -261,16 +261,24 @@ uploadInput.on('change', function () {
 var basePrice = $('span.price').data('price');
 basePrice = parseInt(basePrice);
 var optionPrice = $('.print-detail select option:selected').data('price');
-//optionPrice = parseInt(optionPrice);
 var newPrice = basePrice + optionPrice;
-// $('span.price').text(newPrice);
 
 $('.print-detail select').change(function() {
-    optionPrice = $('.print-detail select option:selected').data('price');
+    alert('sdf');
+
+    optionPrice = $(this).find(':selected').data('price');
     optionPrice = parseInt(optionPrice);
     newPrice = basePrice + optionPrice;
     $('span.price').text(newPrice);
 });
+
+var printSelect = $('.print-selects select');
+
+printSelect.change(function () {
+    var selectedPrice = $(this).find(':selected').data('price');
+    $('span.price').text(selectedPrice);
+});
+
 
 
 

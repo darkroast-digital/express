@@ -547,6 +547,11 @@ template {
 /**
  * A very simple reset that sits on top of Normalize.css.
  */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body,
 h1, h2, h3, h4, h5, h6,
 blockquote, p, pre,
@@ -3428,7 +3433,9 @@ progress[value]::-webkit-progress-value {
 
 @media only screen and (max-width: 48rem) {
   .hamburger {
-    display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 }
 
@@ -3536,6 +3543,10 @@ progress[value]::-webkit-progress-value {
 | #THEME
 |--------------------------------------------------------------------------
 */
+.seperator {
+  background: #D9E0E3;
+}
+
 .us-popup {
   position: fixed;
   top: 0;
@@ -3759,7 +3770,7 @@ tr {
 
 @media only screen and (max-width: 48rem) {
   .nav {
-    width: 75px;
+    width: 50px;
   }
 }
 
@@ -3776,7 +3787,7 @@ tr {
 
 @media only screen and (max-width: 48rem) {
   .nav-brand {
-    height: 75px;
+    height: 50px;
   }
 }
 
@@ -3785,11 +3796,77 @@ tr {
 }
 
 .nav a:not(.nav-brand) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #161b1d;
+}
+
+@media only screen and (max-width: 48rem) {
+  .nav a:not(.nav-brand) {
+    font-size: .75rem;
+    margin-bottom: -1rem;
+  }
 }
 
 .nav a:not(.nav-brand) img {
   max-height: 50px;
+}
+
+@media only screen and (max-width: 48rem) {
+  .nav a:not(.nav-brand) img {
+    max-height: 35px;
+  }
+}
+
+.hamburger {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 6rem;
+}
+
+.off-canvas {
+  width: 200px;
+}
+
+.off-canvas svg {
+  float: right;
+  fill: #F04F54;
+  margin-bottom: 1.5rem;
+}
+
+.off-canvas ul {
+  list-style-type: none;
+  clear: both;
+}
+
+.off-canvas a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #161b1d;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.off-canvas img {
+  height: 1rem;
+  margin-right: .5rem;
 }
 
 .content {
@@ -3802,7 +3879,7 @@ tr {
 
 @media only screen and (max-width: 48rem) {
   .content {
-    width: calc(100% - 75px);
+    width: calc(100% - 50px);
   }
 }
 
@@ -3822,7 +3899,7 @@ tr {
 
 @media only screen and (max-width: 48rem) {
   .topbar {
-    height: 75px;
+    height: 50px;
   }
 }
 
@@ -3865,7 +3942,7 @@ tr {
   }
 }
 
-.topbar li:first-of-type:after {
+.topbar li:first-of-type:after, .topbar li:nth-of-type(2):after {
   content: '|';
 }
 
@@ -3933,8 +4010,8 @@ tr {
 
 @media only screen and (max-width: 48rem) {
   .page {
-    min-height: calc(90vh - 75px);
-    margin-top: 75px;
+    min-height: calc(90vh - 50px);
+    margin-top: 50px;
   }
 }
 

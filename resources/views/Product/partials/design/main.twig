@@ -1,19 +1,29 @@
 {% include 'Product/partials/' ~ product.category ~ '/products/' ~ product.slug ~ '.twig' %}
 
 <div class="field">
-    <label for="company-name">Company Name</label>
+    <label for="company-name">Company{% if product.name == 'Tshirt Design' %} / Organization / Team{% endif %} Name</label>
     <input type="text" name="company-name">            
 </div>
 
 <div class="field">
-    <label for="company-website">Company Website <small>optional</small></label>
+    <label for="company-website">{% if product.name != 'Tshirt Design' %}Company{% endif %} Website <small>optional</small></label>
     <input type="text" name="company-website">        
 </div>
 
-<div class="field">
-    <label for="description">Describe Your Business <small>i.e. industry, services, products</small></label>
-    <input type="text" name="describe">
-</div>
+{% if product.name != 'Tshirt Design' %}
+    <div class="field">
+        <label for="description">Briefly Describe Company / Organization / Team <small>i.e Charity, Softball Team, Roofing Company)</small></label>
+        <input type="text" name="describe">
+    </div>
+    
+    {% else %}
+
+    <div class="field">
+        <label for="description">Describe Your Business <small>i.e. industry, services, products</small></label>
+        <input type="text" name="describe">
+    </div>
+
+{% endif %}
 
 {% if product.slug == 'logo-design' %}
     {% include 'Product/partials/design/logo.twig' %}
@@ -50,7 +60,16 @@
 </div>
 
 <div class="field">
-    <label for="content">{{ product.name }} Content <small>i.e. title, specials, services, photos etc.</small></label>
+    {% if product.name == 'Logo Design' %}
+        <label for="content">Logo Design Description <small>(briefly describe what you're looking for)</small></label>
+    {% elseif product.name == 'Business Card Design' %}
+        <label for="content">Business Card Content <small>i.e. i.e Contact Information, Name, Job Titles etc.</small></label>
+    {% elseif product.name == 'Tshirt Design' %}
+        <label for="content">Tshirt Design Description <small>(briefly describe what you're looking for)</small></label>
+    {% else %}
+        <label for="content">{{ product.name }} Content <small>i.e. title, specials, services, photos etc.</small></label>
+    {% endif %}
+    
     <textarea name="content"></textarea>
 </div>
 

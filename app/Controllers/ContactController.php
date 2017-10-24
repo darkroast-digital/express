@@ -15,11 +15,11 @@ class ContactController extends Controller
     {
         $params = $request->getParams();
 
-        $this->c->mail->from($request->getParam('email'), $request->getParam('name'))
+        $this->mail->from($request->getParam('email'), $request->getParam('name'))
             ->to([
             [
             'name' => 'Darkroast Digital',
-            'email' => 'hi@darkroast.co',
+            'email' => 'support@darkroast.co',
             ]
             ])
             ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
