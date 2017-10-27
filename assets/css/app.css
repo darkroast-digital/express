@@ -3444,7 +3444,7 @@ progress[value]::-webkit-progress-value {
   width: 25px;
   height: 3px;
   margin-bottom: 4px;
-  background: #5890F7;
+  background: #161b1d;
   -webkit-transition: all 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   transition: all 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 }
@@ -4279,6 +4279,30 @@ tr {
   cursor: pointer;
 }
 
+.lightbox img {
+  max-height: 80%;
+  max-width: 80%;
+}
+
+.tshirt-callout {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: .5rem 1rem;
+  background: #F7F9FB;
+}
+
+.tshirt-callout svg {
+  height: 1.5rem;
+}
+
+.tshirt-callout strong {
+  margin-right: .5rem;
+}
+
 /*
 |--------------------------------------------------------------------------
 | #PRODUCT
@@ -4435,6 +4459,12 @@ tr {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media only screen and (max-width: 48rem) {
+  .field.is-flexed {
+    display: block;
+  }
 }
 
 .field.is-flexed label {

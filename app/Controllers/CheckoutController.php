@@ -176,6 +176,7 @@ class CheckoutController extends Controller
     {
         $details = $_SESSION['details'];
         $order = Order::where('hash', $args['hash'])->first();
+        $details = $_SESSION['details'];
 
         $total = 0;
 
@@ -188,7 +189,7 @@ class CheckoutController extends Controller
             ->to([
                 [
                 'name' => $details['first_name'] . ' ' . $details['last_name'],
-                'email' => 'joshstobbs@gmail.com',
+                'email' => $details['email'],
                 ]
             ])
             ->subject('Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.')

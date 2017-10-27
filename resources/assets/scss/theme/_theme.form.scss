@@ -92,6 +92,10 @@
         display: flex;
         align-items: center;
 
+        @include breakpoint(md) {
+            display: block;
+        }
+
         label {
             flex: 0 0 auto;
             margin-left: .5rem;

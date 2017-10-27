@@ -704,4 +704,31 @@ tr {
     &-trigger {
         cursor: pointer;
     }
+
+    img {
+        max-height: 80%;
+        max-width: 80%;
+    }
+}
+
+
+
+
+
+// #TSHIRT CALLOUT
+// =========================================================================
+
+.tshirt-callout {
+    display: inline-flex;
+    align-items: center;
+    padding: .5rem 1rem;
+    background: color(grey-lightest);
+
+    svg {
+        height: 1.5rem;
+    }
+
+    strong {
+        margin-right: .5rem;
+    }
 }
