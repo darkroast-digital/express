@@ -148,16 +148,16 @@ class CheckoutController extends Controller
         }
 
         // Us email
-        $this->mail->from($request->getParam('email'), $request->getParam('first_name') . ' ' . $request->getParam('last_name'))
-            ->to([
-                [
-                'name' => 'Darkroast Digital',
-                'email' => 'josh@darkroast.co',
-                ]
-            ])
-            ->attatchments(__DIR__ . '/../../assets/archives/order_' . $order->id . '.zip')
-            ->subject('An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express')
-            ->send('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray'));
+        // $this->mail->from($request->getParam('email'), $request->getParam('first_name') . ' ' . $request->getParam('last_name'))
+        //     ->to([
+        //         [
+        //         'name' => 'Darkroast Digital',
+        //         'email' => 'josh@darkroast.co',
+        //         ]
+        //     ])
+        //     ->attatchments(__DIR__ . '/../../assets/archives/order_' . $order->id . '.zip')
+        //     ->subject('An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express')
+        //     ->send('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray'));
       
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
@@ -178,11 +178,20 @@ class CheckoutController extends Controller
         $order = Order::where('hash', $args['hash'])->first();
         $details = $_SESSION['details'];
 
-        $total = 0;
+        $subtotal = 0;
 
         foreach ($order->products as $product) {
-            $total = $total + $product->price;
+            $subtotal = $subtotal + $product->price;
         }
+
+        if (isset($details['province'])) {
+            $tax = new \App\Tax\Tax($details['country'], $details['province']);
+        } elseif (isset($details['state'])) {
+            $tax = new \App\Tax\Tax($details['country'], $details['state']);
+        }
+
+        $taxes = $tax->calculateTax($subtotal);
+        $total = $subtotal + $taxes;
 
         // Them email
         $this->mail->from('josh@darkroast.co', 'Darkroast Digital')
@@ -195,7 +204,7 @@ class CheckoutController extends Controller
             ->subject('Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.')
             ->send('mail/summary.twig', compact('details', 'order'));
 
-        return $this->view->render($response, 'Checkout/order.twig', compact('order', 'total'));
+        return $this->view->render($response, 'Checkout/order.twig', compact('order', 'total', 'taxes'));
     }
 
     public function clear($request, $response, $args)

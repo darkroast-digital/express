@@ -45,7 +45,7 @@
 </div>
 
 <div class="field">
-    <label for="colours-textures">Colours and Textures <small>i.e. Blue& Gold or Red, Black, Yellow</small></label>
+    <label for="colours-textures">Colours and Textures <small>i.e. Blue & Gold or Red, Black, Yellow</small></label>
     <input type="text" name="colours-textures">        
 </div>
 
@@ -63,11 +63,11 @@
     {% if product.name == 'Logo Design' %}
         <label for="content">Logo Design Description <small>(briefly describe what you're looking for)</small></label>
     {% elseif product.name == 'Business Card Design' %}
-        <label for="content">Business Card Content <small>i.e. i.e Contact Information, Name, Job Titles etc.</small></label>
+        <label for="content">Business Card Content <small>i.e. Contact Information, Name, Job Titles etc.</small></label>
     {% elseif product.name == 'Tshirt Design' %}
         <label for="content">Tshirt Design Description <small>(briefly describe what you're looking for)</small></label>
     {% else %}
-        <label for="content">{{ product.name }} Content <small>i.e. title, specials, services, photos etc.</small></label>
+        <label for="content">{{ product.name }} Content <small>i.e. title, specials, services, photos, etc.</small></label>
     {% endif %}
     
     <textarea name="content"></textarea>
@@ -92,7 +92,7 @@
 {% if product.name == 'Tshirt Design' %}
     <div class="tshirt-callout">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" xml:space="preserve" width="32" height="32"><g class="nc-icon-wrapper" fill="#444444"><path fill="#444444" d="M30.3,5.9l-4.2-4.2c-1.1-1.1-3.1-1.1-4.2,0L2.3,21.3c-0.1,0.1-0.2,0.2-0.2,0.3c0,0,0,0.1,0,0.1 c0,0.1,0,0.1,0,0.2l-1,8c0,0.3,0.1,0.6,0.3,0.8C1.5,30.9,1.7,31,2,31c0,0,0.1,0,0.1,0l8-1c0.1,0,0.1,0,0.2,0c0,0,0.1,0,0.1,0 c0.1,0,0.2-0.1,0.3-0.2l19.6-19.6C31.5,9,31.5,7,30.3,5.9z M25,12.6L19.4,7L21,5.4l5.6,5.6L25,12.6z M10,27.6l-2.1-2.1l13.6-13.6 l2.1,2.1L10,27.6z M18,8.4l2.1,2.1L6.5,24.1L4.4,22L18,8.4z"></path></g></svg>
-        <strong>Design Only</strong> - T-Shirt Printing currently not available
+        <strong>Design Only</strong> - T-Shirt printing currently not available
     </div>
 {% endif %}
 
