@@ -18,7 +18,10 @@
         "slim/csrf": "^0.8.1",
         "phpmailer/phpmailer": "^5.2",
         "respect/validation": "^1.1",
-        "braintree/braintree_php": "^3.25"
+        "braintree/braintree_php": "^3.25",
+        "mailgun/mailgun-php": "^2.3",
+        "php-http/curl-client": "^1.7",
+        "guzzlehttp/psr7": "^1.4"
     },
     "autoload": {
         "psr-4": {

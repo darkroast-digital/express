@@ -2,9 +2,21 @@
 {% block pageclass %}{% endblock %}
 {% block title %}{{ product.name }}{% endblock %}
 
+{% block ogTitle %}Darkroast Digital Express | {{ product.name }}{% endblock %}
+{% block ogDescription %}Welcome to your new marketing toolbox. DarkRoast Digital Express is our new online ordering system designed to help you the marketing material you need to run your business - faster, easier and more affordable than ever before. {% endblock %}
+{% block ogUrl %}https://express.darkroast.co/{{ product.slug }}{% endblock %}
+{% block ogImage %}../assets/img/og/{{ product.slug }}.jpg{% endblock %}
+
 {% block content %}
 
 <div class="lightbox">
+    <div class="lightbox-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g class="nc-icon-wrapper" fill="#FFFFFF">
+                <path d="M38 12.83L35.17 10 24 21.17 12.83 10 10 12.83 21.17 24 10 35.17 12.83 38 24 26.83 35.17 38 38 35.17 26.83 24z"></path>
+            </g>
+        </svg>
+    </div>
     <img src="" draggable="false">
 </div>
 

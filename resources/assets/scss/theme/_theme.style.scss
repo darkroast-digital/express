@@ -518,6 +518,10 @@ tr {
 
     .card-image {
         height: 250px;
+
+        @media only screen and (min-width: 1441px) {
+            height: 350px;
+        }
     }
 
     .card-body {
@@ -703,6 +707,12 @@ tr {
 
     &-trigger {
         cursor: pointer;
+    }
+
+    &-close {
+        position: absolute;
+        top: $gutter;
+        right: $gutter;
     }
 
     img {

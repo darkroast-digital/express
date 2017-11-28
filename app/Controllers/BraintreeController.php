@@ -14,4 +14,3 @@ class BraintreeController extends Controller
         ]);
     }
 }
-

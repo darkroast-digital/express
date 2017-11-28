@@ -21,6 +21,7 @@
   "dependencies": {
     "autoprefixer": "^7.1.1",
     "concurrently": "^3.4.0",
+    "js-cookie": "^2.2.0",
     "money": "^0.2.0"
   }
 }

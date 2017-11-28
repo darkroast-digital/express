@@ -26,15 +26,20 @@
 
     <link rel="icon" href="/assets/img/fav.png">
 
-    <!--[if lt IE 9]>
-     <script src="js/polyfill/html5-shiv.js"></script>
-  <![endif]-->
+    <!-- OG Data -->
 
+    <meta property="og:title" content="{% block ogTitle %}{% endblock %}">
+    <meta property="og:description" content="{% block ogDescription %}{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block ogUrl %}{% endblock %}">
+    <meta property="og:site_name" content="Darkroast Digital Express">
+    <meta property="og:image" content="{% block ogImage %}{% endblock %}">
+    
 </head>
 <body>
 
     <div class="off-canvas">
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" class="close">
             <g class="nc-icon-wrapper">
                 <path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"></path>
             </g>
@@ -139,12 +144,13 @@
                     <p>Free shipping anywhere in the U.S. and Canada </p>
                     <p>Don't see what you're looking for or looking for a custom solution? No problem, <a href="{{ path_for('contact') }}">let's talk about it. <i class="fa fa-caret-right"></i></a></p>
                     <ul class="footer-nav">
-                    <li>Visit <strong><a href="http://darkroast.co">darkroast.co</a></strong></li>
-                    <li><a href="https://www.facebook.com/darkroastdigital/"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="https://twitter.com/DarkRoastCo"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="https://www.instagram.com/darkroast.co/"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="https://vimeo.com/user45999651"><i class="fa fa-vimeo"></i></a></li>
-                </ul>
+                        <li>Visit <strong><a href="http://darkroast.co">darkroast.co</a></strong></li>
+                        <li><a href="https://www.facebook.com/darkroastdigital/"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/DarkRoastCo"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/darkroast.co/"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://vimeo.com/user45999651"><i class="fa fa-vimeo"></i></a></li>
+                    </ul>
+                    <p><a href="{{ path_for('privacy') }}"><small>Privacy Policy</small></a> | <a href="{{ path_for('terms') }}"><small>Terms and Conditions</small></a></p>
                 </div>
             </footer>
         </div>

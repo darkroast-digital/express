@@ -9,6 +9,7 @@ class CategoryController extends Controller
 {
     public function index($request, $response, $args)
     {
+
         $category = $args['slug'];
         $products = Product::where('category', $category)->get();
 

@@ -22,6 +22,13 @@ if (offCanvasTrigger) {
     });
 }
 
+var close = document.querySelector('.close');
+
+close.addEventListener('click', function() {
+    offCanvas.classList.toggle('is-open');
+    overlay.classList.toggle('is-active');
+});
+
 
 
 
@@ -249,8 +256,20 @@ $(form).submit(function(e) {
 var uploadInput = $('input[type="file"]');
 
 uploadInput.on('change', function () {
-    $(this).parent().find('span').css('display', 'none');
-    $(this).parent().after('<p style="display: inline-block; color: #FFFFFF; background: #43CB9D; padding: .25rem; border-radius: 2px; box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, .1);">Files Uploaded!</p>');
+    // $(this).parent().find('span').css('display', 'none');
+
+    var thisFiles = $(this)[0].files;
+
+
+    if ($('.upload-confirm')) {
+        $('.upload-confirm').css('display', 'none');
+    }
+
+    for (var i = thisFiles.length - 1; i >= 0; i--) {
+        $(this).parent().append('<span style="display:block">' + thisFiles[i].name + '</span>');
+    }
+
+    $(this).parent().after('<p class="upload-confirm" style="display: inline-block; color: #FFFFFF; background: #43CB9D; padding: .25rem; border-radius: 2px; box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, .1);">Files Uploaded!</p>');
 });
 
 
@@ -318,19 +337,28 @@ lightbox.click(function () {
     lightbox.fadeOut('fast');
 });
 
+// #COOKIES
+// =========================================================================
+
+window.Cookies = require('js-cookie');
+
 $.get('https://ipinfo.io', function(response) {
     console.log(response.city, response.country);
 
     if (response.country == 'US') {
-        $('.us-popup').fadeIn();
+        if (Cookies.get('us-visited') != 'true') {
+            $('.us-popup').fadeIn();
+            Cookies.set('us-visited', 'true', { expires: 7 });
+        }
     }
+
 }, 'jsonp');
 
 $('.us-popup-close').click(function() {
     $('.us-popup').fadeOut();
 });
 
-var cad = $.getJSON('http://api.fixer.io/latest', function(data) {
+var cad = $.getJSON('https://api.fixer.io/latest', function(data) {
   fx.rates = data.rates
   var rate = fx(1).from('USD').to('CAD');
   var conversion = rate.toFixed(4);
@@ -358,10 +386,13 @@ var rates = {
 };
 
 var countryInput = document.querySelector('select[name="country"]');
+
+if (countryInput) {
 var provinceInput = document.querySelector('select[name="province"]');
 var subtotal = document.querySelector('input[name="subtotal"]').value;
 var taxContainer = document.querySelector('.tax-container');
 var totalContainer = document.querySelector('.total-container');
+var stateLabel = document.querySelector('label[for="province"]');
 
 provinceInput.addEventListener('change', function () {
     var rate = rates[countryInput.value][this.value];
@@ -374,10 +405,9 @@ provinceInput.addEventListener('change', function () {
 countryInput.addEventListener('change', function() {
 
     if (this.value == 'US') {
-        var stateLabel = document.querySelector('label[for="province"]')
 
         var stateTemplate = `
-            <option selected disabled>Choose your State</option>
+            <option value="" selected disabled>Choose your State</option>
             <option value="Alabama">Alabama</option>
             <option value="Alaska">Alaska</option>
             <option value="Arizona">Arizona</option>
@@ -433,8 +463,31 @@ countryInput.addEventListener('change', function() {
             <option value="Washington D.C.">Washington D.C.</option>
         `;
 
+        document.querySelector('.tax-container').innerHTML = '0.00';
         stateLabel.innerHTML = 'State';
         provinceInput.setAttribute('name', 'state');
         provinceInput.innerHTML = stateTemplate;
+    } else if (this.value == 'CA') {
+        var stateInput = document.querySelector('select[name="state"]');
+        var provinceTemplate = `
+            <option value="" selected disabled>Choose your Province</option>
+            <option value="AB">Alberta</option>
+            <option value="BC">British Columbia</option>
+            <option value="MB">Manitoba</option>
+            <option value="NB">New Brunswick</option>
+            <option value="NL">Newfoundland &amp; Labrador</option>
+            <option value="ON">Ontario</option>
+            <option value="PE">Prince Edward Island</option>
+            <option value="QC">Quebec</option>
+            <option value="SK">Saskatchewan</option>
+            <option value="NT">Northwest Territories</option>
+            <option value="NU">Nunavut</option>
+            <option value="YT">Yukon</option>
+        `;
+
+        stateLabel.innerHTML = 'Province';
+        stateInput.setAttribute('name', 'province');
+        stateInput.innerHTML = provinceTemplate;
     }
 });
+}

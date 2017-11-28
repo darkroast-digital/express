@@ -15,4 +15,14 @@ class SiteController extends Controller
     {
         return $this->view->render($response, 'how-it-works.twig');
     }
+
+    public function privacy($request, $response, $args)
+    {
+        return $this->view->render($response, 'privacy.twig');
+    }
+
+    public function terms($request, $response, $args)
+    {
+        return $this->view->render($response, 'terms.twig');
+    }
 }

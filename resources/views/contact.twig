@@ -2,6 +2,11 @@
 {% block pageclass %}{% endblock %}
 {% block title %}Contact{% endblock %}
 
+{% block ogTitle %}Darkroast Digital Express | Contact{% endblock %}
+{% block ogDescription %}Welcome to your new marketing toolbox. DarkRoast Digital Express is our new online ordering system designed to help you the marketing material you need to run your business - faster, easier and more affordable than ever before. {% endblock %}
+{% block ogUrl %}https://express.darkroast.co/contact{% endblock %}
+{% block ogImage %}../assets/img/og/og.jpg{% endblock %}
+
 {% block content %}
 
 <div class="column-8">
@@ -12,7 +17,7 @@
     <form action="{{ path_for('contact') }}" method="post" class="js-form">
         <div class="form-row">
             <div class="field">
-                <label for="name">Name</label>
+                <label for="na me">Name</label>
                 <input type="text" name="name">
             </div>
             <div class="field">

@@ -47,14 +47,26 @@ $container['url'] = function ($container) {
 // #BRAINTREE
 // =========================================================================
 
+// $container['braintree'] = function ($container) {
+//     $braintree_config = new Braintree_Configuration;
+//     $braintree_token = new Braintree_ClientToken;
+
+//     $braintree_config::environment('sandbox');
+//     $braintree_config::merchantId('rqt73v4n4kfhyzyq');
+//     $braintree_config::publicKey('prmwc62q9y2n4xqt');
+//     $braintree_config::privateKey('3bb4fecabc388e29d3f45c82f6eb736a');
+
+//     return $braintree_token;
+// };
+
 $container['braintree'] = function ($container) {
     $braintree_config = new Braintree_Configuration;
     $braintree_token = new Braintree_ClientToken;
 
-    $braintree_config::environment('sandbox');
-    $braintree_config::merchantId('rqt73v4n4kfhyzyq');
-    $braintree_config::publicKey('prmwc62q9y2n4xqt');
-    $braintree_config::privateKey('3bb4fecabc388e29d3f45c82f6eb736a');
+    $braintree_config::environment(getenv('BRAINTREE_ENVIRONMENT'));
+    $braintree_config::merchantId(getenv('BRAINTREE_MERCHANTID'));
+    $braintree_config::publicKey(getenv('BRAINTREE_PUBLICKEY'));
+    $braintree_config::privateKey(getenv('BRAINTREE_PRIVATEKY'));
 
     return $braintree_token;
 };

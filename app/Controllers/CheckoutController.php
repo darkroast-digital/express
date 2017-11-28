@@ -6,6 +6,7 @@ use App\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
 use Braintree_Transaction;
+use Mailgun\Mailgun;
 
 class CheckoutController extends Controller
 {
@@ -26,6 +27,10 @@ class CheckoutController extends Controller
         $hash = bin2hex((random_bytes(32)));
         $string = '';
 
+        $_SESSION['products'] = $products;
+
+        $_SESSION['details']['hash'] = $hash;
+
         $customer = User::firstOrCreate([
             'first_name' => $request->getParam('first_name'),
             'last_name' => $request->getParam('last_name'),
@@ -35,25 +40,37 @@ class CheckoutController extends Controller
             'password' => password_hash('null', PASSWORD_DEFAULT),
         ]);
 
+        if (isset($details['province'])) {
+            $totalPrice = $this->basket->total($details['country'], $details['province']);
+        } else {
+            $totalPrice = $this->basket->total($details['country'], $details['state']);
+        }
+
         $order = $customer->orders()->create([
             'hash' => $hash,
             'paid' => false,
-            'total' => $this->basket->total($details['country'], $details['province']),
+            'total' => $totalPrice,
         ]);
 
         $order->products()->saveMany(
             $this->basket->all()
         );
 
+        if (isset($details['province'])) {
+            $tax = new \App\Tax\Tax($request->getParam('country'), $request->getParam('province'));
+        } elseif (isset($details['state'])) {
+            $tax = new \App\Tax\Tax($request->getParam('country'), $request->getParam('state'));
+        }
+
         $braintree_config = new \Braintree_Configuration;
 
-        $braintree_config::environment('sandbox');
-        $braintree_config::merchantId('rqt73v4n4kfhyzyq');
-        $braintree_config::publicKey('prmwc62q9y2n4xqt');
-        $braintree_config::privateKey('3bb4fecabc388e29d3f45c82f6eb736a');
+        $braintree_config::environment(getenv('BRAINTREE_ENVIRONMENT'));
+        $braintree_config::merchantId(getenv('BRAINTREE_MERCHANTID'));
+        $braintree_config::publicKey(getenv('BRAINTREE_PUBLICKEY'));
+        $braintree_config::privateKey(getenv('BRAINTREE_PRIVATEKY'));
 
         $result = Braintree_Transaction::sale([
-          'amount' => $this->basket->subTotal(),
+          'amount' => $order->total,
           'paymentMethodNonce' => $request->getParam('payment_method_nonce'),
           'options' => [
           'submitForSettlement' => true,
@@ -147,17 +164,17 @@ class CheckoutController extends Controller
 
         }
 
-        // Us email
-        // $this->mail->from($request->getParam('email'), $request->getParam('first_name') . ' ' . $request->getParam('last_name'))
-        //     ->to([
-        //         [
-        //         'name' => 'Darkroast Digital',
-        //         'email' => 'josh@darkroast.co',
-        //         ]
-        //     ])
-        //     ->attatchments(__DIR__ . '/../../assets/archives/order_' . $order->id . '.zip')
-        //     ->subject('An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express')
-        //     ->send('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray'));
+        $mg = Mailgun::create('key-1715c074f053673f6e3c4c79e8595390');
+
+        $mg->messages()->send('darkroast.co', [
+          'from'    => 'hi@darkroast.co',
+          'to'      => 'hi@darkroast.co',
+          'subject' => 'An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express',
+          'html'    => $this->view->fetch('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray')),
+          'attachment' => [
+            ['filePath' => __DIR__ . '/../../assets/archives/order_' . $order->id . '.zip', 'filename' => $order->id . '.zip']
+          ]
+        ]);
       
         if (!$request->getParam('payment_method_nonce')) {
             return $response->withRedirect($this->router->pathFor('basket'));
@@ -177,11 +194,12 @@ class CheckoutController extends Controller
         $details = $_SESSION['details'];
         $order = Order::where('hash', $args['hash'])->first();
         $details = $_SESSION['details'];
+        $products = $_SESSION['products'];
 
         $subtotal = 0;
 
-        foreach ($order->products as $product) {
-            $subtotal = $subtotal + $product->price;
+        foreach ($products as $product) {
+            $subtotal = $subtotal + $product['price'];
         }
 
         if (isset($details['province'])) {
@@ -194,17 +212,26 @@ class CheckoutController extends Controller
         $total = $subtotal + $taxes;
 
         // Them email
-        $this->mail->from('josh@darkroast.co', 'Darkroast Digital')
-            ->to([
-                [
-                'name' => $details['first_name'] . ' ' . $details['last_name'],
-                'email' => $details['email'],
-                ]
-            ])
-            ->subject('Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.')
-            ->send('mail/summary.twig', compact('details', 'order'));
+        // $this->mail->from('hi@darkroast.co', 'Darkroast Digital')
+        //     ->to([
+        //         [
+        //             'name' => $details['first_name'] . ' ' . $details['last_name'],
+        //             'email' => $details['email'],
+        //         ]
+        //     ])
+        //     ->subject('Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.')
+        //     ->send('mail/summary.twig', compact('details', 'order'));
 
-        return $this->view->render($response, 'Checkout/order.twig', compact('order', 'total', 'taxes'));
+        $mg = Mailgun::create('key-1715c074f053673f6e3c4c79e8595390');
+
+        $mg->messages()->send('darkroast.co', [
+          'from'    => 'hi@darkroast.co',
+          'to'      => $details['email'],
+          'subject' => 'Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.',
+          'html'    => $this->view->fetch('mail/summary.twig', compact('details', 'order'))
+        ]);
+
+        return $this->view->render($response, 'Checkout/order.twig', compact('products', 'order', 'total', 'taxes'));
     }
 
     public function clear($request, $response, $args)

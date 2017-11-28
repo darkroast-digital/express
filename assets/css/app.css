@@ -4102,6 +4102,12 @@ tr {
   height: 250px;
 }
 
+@media only screen and (min-width: 1441px) {
+  .product-card .card-image {
+    height: 350px;
+  }
+}
+
 .product-card .card-body {
   background: #D9E0E3;
   padding: 0;
@@ -4277,6 +4283,12 @@ tr {
 
 .lightbox-trigger {
   cursor: pointer;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
 }
 
 .lightbox img {

@@ -17,16 +17,14 @@
                     <th>Product</th>
                     <th>Price</th>
                     <th>Total</th>
-                    <th>Delivered In</th>
                 </tr>
             </thead>
             <tbody>
-                {% for product in order.products %}
+                {% for product in products %}
                     <tr>
                         <td>{{ product.name }}</td>
-                        <td>${{ product.display_price | number_format(2) }}</td>
+                        <td>${{ product.price | number_format(2) }}</td>
                         <td>1</td>
-                        <td>{{ product.time }} {{ product.length }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

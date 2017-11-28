@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use Mailgun\Mailgun;
 
 class ContactController extends Controller
 {
@@ -14,16 +15,14 @@ class ContactController extends Controller
     public function post($request, $response, $args)
     {
         $params = $request->getParams();
+        $mg = Mailgun::create('key-1715c074f053673f6e3c4c79e8595390');
 
-        $this->mail->from($request->getParam('email'), $request->getParam('name'))
-            ->to([
-            [
-            'name' => 'Darkroast Digital',
-            'email' => 'support@darkroast.co',
-            ]
-            ])
-            ->subject('A new message from ' . $request->getParam('name') . ' on Darkroast Express')
-            ->send('mail/mail.twig', compact('params'));
+        $mg->messages()->send('darkroast.co', [
+          'from'    => $request->getParam('email'),
+          'to'      => 'support@darkroast.co',
+          'subject' => 'A new message from ' . $request->getParam('name') . ' on Darkroast Express',
+          'html'    => $this->view->fetch('mail/mail.twig', compact('params'))
+        ]);
     }
 }
 

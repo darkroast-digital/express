@@ -128,3 +128,13 @@ $app->post('/register', AuthController::class . ':postRegister');
 $app->get('/login', AuthController::class . ':getLogIn')->setName('auth.login');
 $app->post('/login', AuthController::class . ':postLogIn');
 $app->get('/logout', AuthController::class . ':getLogOut')->setName('auth.logout');
+
+
+
+
+
+// #TERMS
+// =========================================================================
+
+$app->get('/privacy-policy', SiteController::class . ':privacy')->setName('privacy');
+$app->get('/terms-and-conditions', SiteController::class . ':terms')->setName('terms');
