@@ -3564,6 +3564,7 @@ progress[value]::-webkit-progress-value {
   height: 100vh;
   width: 100%;
   display: none;
+  overflow: hidden;
 }
 
 .us-popup:after {
