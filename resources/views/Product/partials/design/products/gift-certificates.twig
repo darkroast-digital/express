@@ -1,0 +1,61 @@
+<ul class="product-details">
+    <li><img src="/assets/img/ship.svg" draggable="false"> {{ product.details.one }}</li>
+    <li><img src="/assets/img/product-details/sides.svg" draggable="false"> {{ product.details.two }}</li>
+    <li><img src="/assets/img/designs.svg" draggable="false"> {{ product.details.three }}</li>
+    <li><img src="/assets/img/product-details/revisions.svg" draggable="false"> {{ product.details.four }}</li>
+    <li><img src="/assets/img/stock.svg" draggable="false"> {{ product.details.five }}</li>
+    <li><img src="/assets/img/satisfaction.svg" draggable="false"> {{ product.details.six }}</li>
+</ul>
+
+<!-- End Details -->
+
+<div class="field radio design-orientation is-line">
+    <label>Size Options</label>
+    <div>
+        <div>
+            <img src="/assets/img/products/design/orientation/landscape.svg" draggable="false">
+            4.25"x5.75"<br>
+            <small>(A2 Postcard)</small>
+        </div>
+        <div>
+            <img src="/assets/img/products/design/orientation/long.svg" draggable="false">
+            4"x9"<br>
+            <small>(#10 Postcard)</small>
+        </div>
+    </div>
+</div>
+
+<div class="field print-detail">
+    <label>Quantity</label>
+    <select name="option[0]quantity" required>
+        <optgroup label="4x9 Matte/Gloss">
+            <option value="4x9-gift-certificate-50-matte-gloss" data-price="199">50</option>
+            <option value="4x9-gift-certificate-100-matte-gloss" data-price="229">100</option>
+            <option value="4x9-gift-certificate-250-matte-gloss" data-price="269">250</option>
+            <option value="4x9-gift-certificate-500-matte-gloss" data-price="299">500</option>
+        </optgroup>
+        <optgroup label="4x9 Pearl">
+            <option value="4x9-gift-certificate-50-pearl" data-price="229">50</option>
+            <option value="4x9-gift-certificate-100-pearl" data-price="335">100</option>
+            <option value="4x9-gift-certificate-250-pearl" data-price="389">250</option>
+            <option value="4x9-gift-certificate-500-pearl" data-price="449">500</option>
+        </optgroup>
+        <optgroup label="5.75x4.375 Matte/Gloss">
+            <option value="5.75x4.375-gift-certificate-50-matte-gloss" data-price="184">50</option>
+            <option value="5.75x4.375-gift-certificate-100-matte-gloss" data-price="219">100</option>
+            <option value="5.75x4.375-gift-certificate-250-matte-gloss" data-price="254">250</option>
+            <option value="5.75x4.375-gift-certificate-500-matte-gloss" data-price="279">500</option>
+        </optgroup>
+        <optgroup label="5.75x4.375 Pearl">
+            <option value="5.75x4.375-gift-certificate-50-pearl" data-price="269">50</option>
+            <option value="5.75x4.375-gift-certificate-100-pearl" data-price="305">100</option>
+            <option value="5.75x4.375-gift-certificate-250-pearl" data-price="369">250</option>
+            <option value="5.75x4.375-gift-certificate-500-pearl" data-price="419">500</option>
+        </optgroup>
+    </select>
+
+    <div class="cost-of-option">
+        <hr>
+        <p><strong>Total <small>(Design + Print)</small> : </strong> $<span class="price" data-price="{{ product.price }}">{{ product.display_price }}</span></p>
+    </div>
+</div>

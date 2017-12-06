@@ -1,0 +1,48 @@
+<p>Includes Simple design, Print &amp; Shipping</p>
+
+<div class="field print-detail is-inline">
+    <label>Size</label>
+    <input type="radio" name="size" value="4x6" data-print="1"> 5.25"x7.25" (A7)
+    <input type="radio" name="size" value="4x9" data-print="2"> 5.75"x4.375" (A2)
+    <input type="radio" name="size" value="6x8" data-print="3"> 9.5"x4.25" (#10)
+</div>
+
+<div class="field print-selects">
+    <label class="quantity-label">Quantity</label>
+    <select name="option[0]quantity" data-select="1" required>
+        <option value="default" data-price="0" disabled selected>Select Quantity</option>
+        <option value="envelopes-5.25x7.25-50" data-price="99">50</option>
+        <option value="envelopes-5.25x7.25-100" data-price="120">100</option>
+        <option value="envelopes-5.25x7.25-250" data-price="175">250</option>
+        <option value="envelopes-5.25x7.25-500" data-price="235">500</option>
+    </select>
+
+    <select name="option[1]quantity" data-select="2" required>
+        <option value="default" data-price="0" disabled selected>Select Quantity</option>
+        <option value="envelopes-5.75x4.375-50" data-price="98">50</option>
+        <option value="envelopes-5.75x4.375-100" data-price="118">100</option>
+        <option value="envelopes-5.75x4.375-250" data-price="165">250</option>
+        <option value="envelopes-5.75x4.375-500" data-price="205">500</option>
+    </select>
+
+    <select name="option[2]quantity" data-select="3" required>
+        <option value="default" data-price="0" disabled selected>Select Quantity</option>
+        <option value="envelopes-9.5x4.25-50" data-price="99">50</option>
+        <option value="envelopes-9.5x4.25-100" data-price="120">100</option>
+        <option value="envelopes-9.5x4.25-250" data-price="175">250</option>
+        <option value="envelopes-9.5x4.25-500" data-price="235">500</option>
+    </select>
+
+    <div class="field">
+        <label for="files">
+            Company Logo
+            <span class="image-zone"></span>
+            <input type="file" name="files[]" id="files" multiple>
+        </label>
+    </div>
+    
+    <hr>
+    <div class="cost-of-option">
+        <p><strong>Total: </strong> $<span class="price" data-price="{{ product.price }}">{{ product.display_price }}</span></p>
+    </div>
+</div>

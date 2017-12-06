@@ -53,7 +53,7 @@ class CheckoutController extends Controller
         ]);
 
         $order->products()->saveMany(
-            $this->basket->all()
+            $this->basket->all();
         );
 
         if (isset($details['province'])) {
@@ -166,14 +166,30 @@ class CheckoutController extends Controller
 
         $mg = Mailgun::create('key-1715c074f053673f6e3c4c79e8595390');
 
+        if (file_exists(__DIR__ . '/../../assets/archives/order_' . $order->id . '.zip')) {
+            $mg->messages()->send('darkroast.co', [
+                'from'    => 'hi@darkroast.co',
+                'to'      => 'josh@darkroast.co',
+                'subject' => 'An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express',
+                'html'    => $this->view->fetch('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray')),
+                'attachment' => [
+                    ['filePath' => __DIR__ . '/../../assets/archives/order_' . $order->id . '.zip', 'filename' => $order->id . '.zip']
+                ]
+            ]);
+        } else {
+            $mg->messages()->send('darkroast.co', [
+                'from'    => 'hi@darkroast.co',
+                'to'      => 'josh@darkroast.co',
+                'subject' => 'An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express',
+                'html'    => $this->view->fetch('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray')),
+            ]);
+        }
+
         $mg->messages()->send('darkroast.co', [
           'from'    => 'hi@darkroast.co',
-          'to'      => 'hi@darkroast.co',
-          'subject' => 'An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express',
-          'html'    => $this->view->fetch('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray')),
-          'attachment' => [
-            ['filePath' => __DIR__ . '/../../assets/archives/order_' . $order->id . '.zip', 'filename' => $order->id . '.zip']
-          ]
+          'to'      => $request->getParam('email'),
+          'subject' => 'Your order from Darkroast Express',
+          'html'    => 'Hey there',
         ]);
       
         if (!$request->getParam('payment_method_nonce')) {
@@ -210,26 +226,6 @@ class CheckoutController extends Controller
 
         $taxes = $tax->calculateTax($subtotal);
         $total = $subtotal + $taxes;
-
-        // Them email
-        // $this->mail->from('hi@darkroast.co', 'Darkroast Digital')
-        //     ->to([
-        //         [
-        //             'name' => $details['first_name'] . ' ' . $details['last_name'],
-        //             'email' => $details['email'],
-        //         ]
-        //     ])
-        //     ->subject('Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.')
-        //     ->send('mail/summary.twig', compact('details', 'order'));
-
-        $mg = Mailgun::create('key-1715c074f053673f6e3c4c79e8595390');
-
-        $mg->messages()->send('darkroast.co', [
-          'from'    => 'hi@darkroast.co',
-          'to'      => $details['email'],
-          'subject' => 'Hey ' . $details['first_name'] . '! Here\'s a summary of your Darkroast Express order.',
-          'html'    => $this->view->fetch('mail/summary.twig', compact('details', 'order'))
-        ]);
 
         return $this->view->render($response, 'Checkout/order.twig', compact('products', 'order', 'total', 'taxes'));
     }

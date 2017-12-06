@@ -1,5 +1,6 @@
 {% include 'Product/partials/' ~ product.category ~ '/products/' ~ product.slug ~ '.twig' %}
 
+{% if product.slug != 'envelopes' %}
 <div class="field">
     <label for="company-name">Company{% if product.name == 'Tshirt Design' %} / Organization / Team{% endif %} Name</label>
     <input type="text" name="company-name">            
@@ -111,3 +112,4 @@
     <label for="instructions">Additional Instructions</label>
     <textarea name="instructions"></textarea>
 </div>
+{% endif %}

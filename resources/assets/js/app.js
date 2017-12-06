@@ -256,18 +256,18 @@ $(form).submit(function(e) {
 var uploadInput = $('input[type="file"]');
 
 uploadInput.on('change', function () {
-    // $(this).parent().find('span').css('display', 'none');
+    $(this).parent().find('span').css('display', 'none');
 
     var thisFiles = $(this)[0].files;
 
 
-    if ($('.upload-confirm')) {
-        $('.upload-confirm').css('display', 'none');
-    }
+    // if ($('.upload-confirm')) {
+    //     $('.upload-confirm').css('display', 'none');
+    // }
 
-    for (var i = thisFiles.length - 1; i >= 0; i--) {
-        $(this).parent().append('<span style="display:block">' + thisFiles[i].name + '</span>');
-    }
+    // for (var i = thisFiles.length - 1; i >= 0; i--) {
+    //     $(this).parent().append('<span style="display:block">' + thisFiles[i].name + '</span>');
+    // }
 
     $(this).parent().after('<p class="upload-confirm" style="display: inline-block; color: #FFFFFF; background: #43CB9D; padding: .25rem; border-radius: 2px; box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, .1);">Files Uploaded!</p>');
 });
