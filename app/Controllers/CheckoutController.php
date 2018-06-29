@@ -53,8 +53,12 @@ class CheckoutController extends Controller
         ]);
 
         $order->products()->saveMany(
-            $this->basket->all();
+            $this->basket->all()
         );
+
+        $subtotal = $this->basket->subtotal();
+
+        $total = $order->total;
 
         if (isset($details['province'])) {
             $tax = new \App\Tax\Tax($request->getParam('country'), $request->getParam('province'));
@@ -169,7 +173,7 @@ class CheckoutController extends Controller
         if (file_exists(__DIR__ . '/../../assets/archives/order_' . $order->id . '.zip')) {
             $mg->messages()->send('darkroast.co', [
                 'from'    => 'hi@darkroast.co',
-                'to'      => 'josh@darkroast.co',
+                'to'      => 'hi@darkroast.co',
                 'subject' => 'An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express',
                 'html'    => $this->view->fetch('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray')),
                 'attachment' => [
@@ -179,17 +183,19 @@ class CheckoutController extends Controller
         } else {
             $mg->messages()->send('darkroast.co', [
                 'from'    => 'hi@darkroast.co',
-                'to'      => 'josh@darkroast.co',
+                'to'      => 'hi@darkroast.co',
                 'subject' => 'An order has been placed by ' . $request->getParam('first_name') . ' ' . $request->getParam('last_name') . ' on Darkroast Express',
                 'html'    => $this->view->fetch('mail/order.twig', compact('choices', 'details', 'order', 'filesArray', 'imagesArray')),
             ]);
         }
 
+        $taxes = $tax->calculateTax($subtotal);
+
         $mg->messages()->send('darkroast.co', [
           'from'    => 'hi@darkroast.co',
           'to'      => $request->getParam('email'),
-          'subject' => 'Your order from Darkroast Express',
-          'html'    => 'Hey there',
+          'subject' => 'Hey ' . $request->getParam('first_name') . '! Your order from Darkroast Express',
+          'html'    => $this->view->fetch('mail/summary-new.twig', compact('choices', 'details', 'order', 'taxes', 'total', 'subtotal')),
         ]);
       
         if (!$request->getParam('payment_method_nonce')) {

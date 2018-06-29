@@ -3543,6 +3543,27 @@ progress[value]::-webkit-progress-value {
 | #THEME
 |--------------------------------------------------------------------------
 */
+#godaddy-security-badge {
+  margin: 1.5rem 0 0 !important;
+}
+
+.contact-footer ul {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0.75rem;
+  background: #F7F9FB;
+  border-radius: 2px;
+}
+
+.contact-footer ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+
 .seperator {
   background: #D9E0E3;
 }

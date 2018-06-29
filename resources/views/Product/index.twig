@@ -33,7 +33,7 @@
 <div class="page-details column-11">
     
     <h3>{{ product.name }} ${{ product.display_price }}</h3>
-    <p>In {{ product.time }} {{ product.length }}</p>
+    <p>{% if product.slug != 'wordpress-fixes' and product.slug != 'shopify-fixes' %} {% if product.slug == 'startup-package' or product.slug == 'pro-package' %}Designs{% endif %} In{% endif %} {{ product.time }} {{ product.length }}</p>
 
     <!-- End Title -->
 
@@ -43,7 +43,7 @@
         
         {% embed 'Product/partials/' ~ product.category ~ '/main.twig' %}
             {% block description %}{% endblock %}
-             {% block details %}{% endblock %}
+            {% block details %}{% endblock %}
         {% endembed %}
         
         <button type="submit">Send</button>

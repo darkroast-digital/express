@@ -45,7 +45,7 @@
 
     </style>
   <!--<![endif]--></head>
-<body style="background: #F5F8FF;">
+<body style="background: #F5F8FF; padding: 20px">
   <div style="background-color:#F5F8FF;"><!--[if mso | IE]>
       <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
         <tr>
@@ -75,10 +75,10 @@
       <![endif]--><div style="margin:0px auto;max-width:600px;background:white;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:white;" align="center" border="0"><tbody><tr><td style="text-align:left;vertical-align:top;direction:ltr;font-size:0px;padding:20px;"><!--[if mso | IE]>
       <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:undefined;width:150px;">
       <![endif]--><div style="cursor:auto;color:#000000;font-family:Roboto, Arial;font-size:14px;line-height:22px;">
-            <h3>Hey {{ user.name }}</h3>
+            <h3>Hey {{ details.first_name }}</h3>
         </div><!--[if mso | IE]>
       </td><td style="vertical-align:undefined;width:150px;">
-      <![endif]--><div style="cursor:auto;color:#9298A2;font-family:Roboto, Arial;font-size:14px;line-height:22px;"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus molestiae neque, vero hic commodi eveniet harum ad, vitae nostrum ipsam.</p></div><!--[if mso | IE]>
+      <![endif]--><div style="cursor:auto;color:#9298A2;font-family:Roboto, Arial;font-size:14px;line-height:22px;"><p>Thank you for your recent order on Darkroast Digital Express, below you'll find a summary of what you ordered.</p></div><!--[if mso | IE]>
       </td><td style="vertical-align:undefined;width:150px;">
       <![endif]--><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px;"><!--[if mso | IE]>
       <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:undefined;width:150px;">
@@ -92,15 +92,15 @@
       </td><td style="vertical-align:undefined;width:75px;">
       <![endif]--><div style="cursor:auto;color:#000000;font-family:Roboto, Arial;font-size:14px;line-height:22px;">
                 
-                        {% for product in products %}
-                            <h3 style="margin-bottom: -15px;">Product: {{ product.name }} - {{ product.price }}</h3>
+                        {% for product in order.products %}
+                            <h3 style="margin-bottom: -15px;">Product: {{ product.name }} - ${{ product.price }}</h3>
                             <p style="color: #9298A2">Delivered In: {{ product.time }} {{ product.length }}</p>
                             <hr style="border: none; height: 1px; width: 100%; background: #E9EEF6;">
                         {% endfor %}
                     <ul style="list-style-type: none; padding-left: 0;">
-                        <li><strong>Subtotal:</strong> {{ subtotal }}</li>
-                        <li><strong>Tax:</strong> {{ tax }}</li>
-                        <li><h3>Total: {{ total }}</h3></li>
+                        <li><strong>Subtotal:</strong> ${{ subtotal }}</li>
+                        <li><strong>Tax:</strong> ${{ taxes }}</li>
+                        <li><h3>Total: ${{ total }}</h3></li>
                     </ul>
                 
             </div><!--[if mso | IE]>
@@ -115,25 +115,20 @@
         <tr>
           <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
       <![endif]--><div style="margin:0px auto;max-width:600px;background:#F5F8FF;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:#F5F8FF;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px;"><!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:undefined;width:120px;">
-      <![endif]--><div style="cursor:auto;color:#BDC4D1;font-family:Roboto, Arial;font-size:14px;line-height:22px;">
-                    <a href="https://express.darkroast.co/terms-and-conditions" style="color: #BDC4D1">Terms &amp; Conditions</a> |
-                    <a href="https://express.darkroast.co/privacy-policy" style="color: #BDC4D1">Privacy Policy</a> |
-                    <a href="https://express.darkroast.co/how-it-works" style="color: #BDC4D1">How It Works</a>
-                </div><!--[if mso | IE]>
-      </td><td style="vertical-align:undefined;width:120px;">
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:undefined;width:150px;">
       <![endif]--><div style="font-size:1px;line-height:16px;"> </div><!--[if mso | IE]>
-      </td><td style="vertical-align:undefined;width:120px;">
-      <![endif]--><div style="cursor:auto;color:#DDE1E8;font-family:Roboto, Arial;font-size:11px;line-height:auto;">
-                    Sent by DarkRoast Digital | Express
+      </td><td style="vertical-align:undefined;width:150px;">
+      <![endif]--><div style="cursor:auto;color:#bfbfbf;font-family:Roboto, Arial;font-size:11px;line-height:auto;">
+                    Sent by Darkroast Digital Express
                 </div><!--[if mso | IE]>
-      </td><td style="vertical-align:undefined;width:120px;">
+      </td><td style="vertical-align:undefined;width:150px;">
       <![endif]--><div style="font-size:1px;line-height:16px;"> </div><!--[if mso | IE]>
-      </td><td style="vertical-align:undefined;width:120px;">
-      <![endif]--><div style="cursor:auto;color:#DDE1E8;font-family:Roboto, Arial;font-size:11px;line-height:auto;">
+      </td><td style="vertical-align:undefined;width:150px;">
+      <![endif]--><div style="cursor:auto;color:#bfbfbf;font-family:Roboto, Arial;font-size:11px;line-height:auto;">
                     © 2017 Darkroast Digital Express<br>
                     490 Pelissier St, Windsor, ON N9A 4K9 <br>
-                    519.915.5884 | hi@darkroast.co <br>
+                    519.915.5884 <br>
+                    hi@darkroast.co <br>
                     GST Registration No.: 800119679RT0001
                 </div><!--[if mso | IE]>
       </td></tr></table>

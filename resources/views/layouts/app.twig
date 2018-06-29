@@ -46,6 +46,24 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+
+    <!-- Facebook Pixel Code -->
+        <script>
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '345187799221149');
+          fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+          src="https://www.facebook.com/tr?id=345187799221149&ev=PageView&noscript=1"
+        /></noscript>
+    <!-- End Facebook Pixel Code -->
     
 </head>
 <body>
@@ -163,6 +181,7 @@
                         <li><a href="https://vimeo.com/user45999651"><i class="fa fa-vimeo"></i></a></li>
                     </ul>
                     <p><a href="{{ path_for('privacy') }}"><small>Privacy Policy</small></a> | <a href="{{ path_for('terms') }}"><small>Terms and Conditions</small></a></p>
+                    <script id="godaddy-security-s" src="https://cdn.sucuri.net/badge/badge.js" data-s="208" data-i="e2e5711933278482e80537c519d469941112c6df65" data-p="o" data-c="l" data-t="g"></script>
                 </div>
             </footer>
         </div>

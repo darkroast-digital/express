@@ -1,32 +1,37 @@
 {% include 'Product/partials/' ~ product.category ~ '/products/' ~ product.slug ~ '.twig' %}
 
 {% if product.slug != 'envelopes' %}
+
+{% if product.name != 'Snapchat Geofilter' %}
 <div class="field">
-    <label for="company-name">Company{% if product.name == 'Tshirt Design' %} / Organization / Team{% endif %} Name</label>
+    <label for="company-name">{% if product.name != 'Resume Design' %}Company {% else %}Your{% endif %}{% if product.name == 'Tshirt Design' %} / Organization / Team{% endif %} Name</label>
     <input type="text" name="company-name">            
 </div>
 
-<div class="field">
-    <label for="company-website">{% if product.name != 'Tshirt Design' %}Company{% endif %} Website <small>optional</small></label>
-    <input type="text" name="company-website">        
-</div>
-
-{% if product.name == 'Tshirt Design' %}
+{% if product.name != 'Resume Design' %}
     <div class="field">
-        <label for="description">Briefly Describe Company / Organization / Team <small>(i.e Charity, Softball Team, Roofing Company)</small></label>
-        <input type="text" name="describe">
-    </div>
-    
-    {% else %}
-
-    <div class="field">
-        <label for="description">Briefly describe your business <small>(i.e Products, Services, Industry)</small></label>
-        <input type="text" name="describe">
+        <label for="company-website">{% if product.name != 'Tshirt Design' %}Company{% endif %} Website <small>optional</small></label>
+        <input type="text" name="company-website">        
     </div>
 
+    {% if product.name == 'Tshirt Design' %}
+        <div class="field">
+            <label for="description">Briefly Describe Company / Organization / Team <small>(i.e Charity, Softball Team, Roofing Company)</small></label>
+            <input type="text" name="describe">
+        </div>
+        
+        {% else %}
+
+        <div class="field">
+            <label for="description">Briefly describe your business <small>(i.e Products, Services, Industry)</small></label>
+            <input type="text" name="describe">
+        </div>
+
+    {% endif %}
+{% endif %}
 {% endif %}
 
-{% if product.slug == 'logo-design' %}
+{% if product.slug == 'logo-design' or product.slug == 'essentials-package' %}
     {% include 'Product/partials/design/logo.twig' %}
 {% endif %}
 
@@ -60,6 +65,59 @@
     <input type="text" name="themes-images">       
 </div>
 
+{% if product.slug == 'startup-package' or product.slug == 'pro-package' %}
+
+<h4><strong>Step 2</strong> - Website</h4>
+<hr>
+
+<div class="field is-inline is-flexed">
+    Do you already have a domain name? 
+    <label><input type="radio" name="has-domain" value="yes"> Yes</label>
+    <label><input type="radio" name="has-domain" value="no"> No</label>
+</div>
+
+<div class="field">
+    <label for="domain-name">What is your domain name? <small>(or the one you'd like.)</small></label>
+    <input type="text" name="domain-name">
+</div>
+
+<div class="field">
+    <label for="custom-email">Will you need custom email addresses?<strong> (+$139 per email address/year)</strong></label>
+    <select name="option[10]custom-email">
+        <option value="no" selected>No</option>
+        <option value="custom-email" >1</option>
+        <option value="custom-email-2" >2</option>
+        <option value="custom-email-3" >3</option>
+        <option value="custom-email-4" >4</option>
+        <option value="custom-email-5" >5</option>
+    </select>
+</div>
+
+<p><strong>You can select up to 5 of the following {% if product.slug == 'pro-package' %}pages {% else %}content sections.{% endif %}</strong></p>
+<p>Navigation Menu, Header, and Footer are included.</p>
+
+<div class="field is-columns is-inline">
+    {% include 'Product/partials/web/layout.twig' %}
+</div>
+
+<h4><strong>Step 3</strong> - Features</h4>
+<hr>
+
+{% include 'Product/partials/web/popovers.twig' %}
+
+<h4><strong>Step 4</strong> - Content</h4>
+<hr>
+
+<p>Unless you selected our Copywriting Feature, you are responsible for providing all of the website copy / content. <br>
+You can send us this later if you don’t have it yet.</p>
+
+<div class="field">
+        <label for="keywords">Search Keywords <small>optional - if more than one separate by commas</small></label>
+        <input type="text" name="keywords" placeholder="What keywords describe your business or website?">
+    </div>
+
+{% endif %}
+
 <div class="field">
     {% if product.name == 'Logo Design' %}
         <label for="content">Logo Design Description <small>(briefly describe what you're looking for)</small></label>
@@ -67,6 +125,14 @@
         <label for="content">Business Card Content <small>i.e. Contact Information, Name, Job Titles etc.</small></label>
     {% elseif product.name == 'Tshirt Design' %}
         <label for="content">Tshirt Design Description <small>(briefly describe what you're looking for)</small></label>
+    {% elseif product.name == 'Resume Design' %}
+        <label for="content">Additional Content<small>i.e. New title, certifications, etc. - optional</small></label>
+    {% elseif product.name == 'Essentials Package' %}
+        <label for="content">Content + Instructions <small>Tell us a little more about what you would like to see</small></label>
+    {% elseif product.name == 'Snapchat Geofilter' %}
+        <label for="content">Content <small>Tell us a little more about what you would like to see</small></label>
+    {% elseif product.name == 'Startup Package' or product.name == 'Pro Package' %}
+        <label for="description">Website Content <small>i.e. title, specials, services, photos, etc.</small></label>
     {% else %}
         <label for="content">{{ product.name }} Content <small>i.e. title, specials, services, photos, etc.</small></label>
     {% endif %}
@@ -76,19 +142,25 @@
 
 <div class="field">
     <label for="files">
-        Content Files
+        {% if product.slug == 'essentials-package' %}Uploads <small>i.e Examples, Descriptions, Services etc</small>{% elseif product.name == 'Resume Design'%}Current/ Old Resume{% else %} Content Files{% endif %}
         <span class="image-zone"></span>
         <input type="file" name="files[]" id="files" multiple>
     </label>
 </div>
 
-<div class="field">
-    <label for="images">
-        Images
-        <span class="image-zone"></span>
-        <input type="file" name="images[]" id="images" multiple>
-    </label>
-</div>
+{% if product.slug != 'essentials-package' %}
+    <div class="field">
+        <label for="images">
+            {% if product.name == 'Resume Design' %}
+                Head Shot <small>optional</small>
+            {% else %}
+                Images
+            {% endif %}
+            <span class="image-zone"></span>
+            <input type="file" name="images[]" id="images" multiple>
+        </label>
+    </div>
+{% endif %}
 
 {% if product.name == 'Tshirt Design' %}
     <div class="tshirt-callout">
@@ -108,8 +180,15 @@
 </div>
 {% endif %}
 
+{% if product.slug == 'essentials-package' %}
+<p><strong>This should help us get started. We may ask for more information later.</strong></p>
+{% endif %}
+
+{% if product.slug != 'essentials-package' %}
 <div class="field">
     <label for="instructions">Additional Instructions</label>
     <textarea name="instructions"></textarea>
 </div>
+{% endif %}
+
 {% endif %}

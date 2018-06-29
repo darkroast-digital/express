@@ -14,6 +14,33 @@ $mobile-width: 50px;
 
 
 
+// #IDIOCY
+// =========================================================================
+
+#godaddy-security-badge {
+    margin: $gutter 0 0 !important;
+}
+
+.contact-footer {
+
+    ul {
+        display: inline-flex;
+        padding: $gutter * .5;
+        background: color(grey-lightest);
+        border-radius: radius(small);
+
+        li {
+           display: flex;
+           margin-right: 1rem; 
+           margin-bottom: 0;
+        }
+    }
+}
+
+
+
+
+
 // #SEPERATOR
 // =========================================================================
 
